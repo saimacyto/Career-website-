@@ -123,47 +123,41 @@ const SITE = {
     a.addEventListener("mouseleave", () => pointCompass(null));
   });
 
-  /* ---------------- ruler / map ---------------- */
+  /* ---------------- map: careers grouped by years of school ---------------- */
   const MAX_Y = 12;
-  function renderRuler() {
-    const ruler = $("#ruler");
-    ruler.innerHTML = CAT_ORDER.map(k => `
-      <div class="r-row" data-cat="${k}" role="listitem">
-        <div class="r-label">${esc(CATS[k].label)}</div>
-        <div class="r-track" data-track="${k}"></div>
-      </div>`).join("") + `
-      <div class="r-axis"><div class="r-axis-label">years after<br>high school</div>
-        <div class="r-ticks">${[0, 2, 4, 6, 8, 10, 12].map(t =>
-          `<span class="r-tick" style="left:${(t / MAX_Y) * 100}%">${t}${t === 12 ? "+" : ""}</span>`).join("")}</div>
-      </div>`;
-    layoutRuler();
-  }
-  function layoutRuler() {
+  const BUCKETS = [
+    { max: 3, label: "About 2 years", sub: "Associate degree" },
+    { max: 4, label: "About 4 years", sub: "Bachelor's degree" },
+    { max: 6, label: "5–6 years", sub: "Master's degree" },
+    { max: 9, label: "7–8 years", sub: "Doctorate" },
+    { max: 99, label: "10+ years", sub: "MD, PhD, and residency" }
+  ];
+  const bucketOf = c => BUCKETS.findIndex(bk => c.years <= bk.max);
+  function renderMap() {
+    const pill = (c, i) => `<button type="button" class="m-pill" data-cat="${c.cat}" data-open="${c.id}" style="--i:${i}"
+      title="${esc(c.name)} · ${esc(c.yearsLabel)}">${esc(SHORT[c.id] || c.name)}</button>`;
+    const inCell = (k, bi) => careers.filter(c => c.cat === k && bucketOf(c) === bi).sort((a, b) => a.years - b.years || a.name.localeCompare(b.name));
     let n = 0;
-    CAT_ORDER.forEach(k => {
-      const track = document.querySelector(`[data-track="${k}"]`);
-      const W = track.clientWidth;
-      const items = careers.filter(c => c.cat === k).sort((a, b) => a.years - b.years);
-      const lanes = []; // right edge (px) of last item in each lane
-      let html = "";
-      items.forEach(c => {
-        const label = SHORT[c.id] || c.name;
-        const w = label.length * 7 + 34;
-        const x = (Math.min(c.years, MAX_Y) / MAX_Y) * W;
-        const left = x - w / 2;
-        let lane = lanes.findIndex(r => r + 6 < left);
-        if (lane === -1) { lane = lanes.length; lanes.push(0); }
-        lanes[lane] = x + w / 2;
-        html += `<button type="button" class="r-dot" style="left:${x}px;top:${10 + lane * 32}px;--i:${n++}"
-          data-open="${c.id}" title="${esc(c.name)} · ${esc(c.yearsLabel)}">${esc(label)}</button>`;
-      });
-      track.innerHTML = html;
-      track.style.minHeight = (20 + lanes.length * 32) + "px";
-    });
+    const head = `<div class="m-corner">Career area</div>` + BUCKETS.map((bk, bi) => `
+      <div class="m-head"><strong>${bk.label}</strong><span>${bk.sub}</span>
+        <span class="m-bar" aria-hidden="true"><span style="width:${((bi + 1) / BUCKETS.length) * 100}%"></span></span></div>`).join("");
+    const rows = CAT_ORDER.map(k => `<div class="m-cat" data-cat="${k}">${esc(CATS[k].label)}</div>` +
+      BUCKETS.map((bk, bi) => {
+        const list = inCell(k, bi);
+        return `<div class="m-cell" data-cat="${k}" data-empty="${!list.length}"><span class="m-cell-label">${bk.label}</span>${list.map(c => pill(c, n++)).join("")}</div>`;
+      }).join("")).join("");
+    $("#ruler").innerHTML = `<div class="m-grid">${head}${rows}</div>`;
+
+    /* phone layout: one block per length of training */
+    n = 0;
+    $("#ruler-mobile").innerHTML = BUCKETS.map((bk, bi) => {
+      const list = careers.filter(c => bucketOf(c) === bi).sort((a, b) => CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat) || a.name.localeCompare(b.name));
+      return `<div class="mm-block"><div class="mm-head"><strong>${bk.label}</strong><span>${bk.sub} · ${list.length} careers</span></div>
+        <div class="mm-pills">${list.map(c => pill(c, n++)).join("")}</div></div>`;
+    }).join("");
+    $("#map-legend").innerHTML = CAT_ORDER.map(k => `<span class="m-key" data-cat="${k}">${esc(CATS[k].label)}</span>`).join("");
   }
-  renderRuler();
-  let rt;
-  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(layoutRuler, 120); });
+  renderMap();
 
   /* ---------------- shortlist ---------------- */
   let shortlist = store.get("bcc-shortlist", []).filter(id => byId[id]);
