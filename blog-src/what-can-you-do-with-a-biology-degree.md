@@ -2,7 +2,7 @@
 title: What Can You Do With a Biology Degree? 17 Healthcare Careers Beyond Medical School
 description: A biology degree opens far more doors than medical school. Here are 17 healthcare careers biology graduates move into, from one-year lab programs to PA school, with the training each one takes.
 date: 2026-09-26
-order: 1
+order: 4
 tag: Degree guides
 careers: mls, cytotech, pa, gc, pharmacist, rn, researchtech, crc
 ---

@@ -2,7 +2,7 @@
 title: "How to Become a Healthcare Administrator: Degrees, Skills, and Career Paths"
 description: Healthcare administrators run the business side of hospitals, clinics, and labs. Learn what the job involves, which degrees lead there (MHA, MPH, or MBA), and how clinical professionals move into management.
 date: 2026-09-26
-order: 6
+order: 9
 tag: Career spotlights
 careers: healthadmin, mph, crc
 ---

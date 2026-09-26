@@ -15,6 +15,7 @@ Companion site for the **Smart Simplicity System** video series.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
 - **What you'll get**: six benefit cards and a three-step "how it works" strip near the top
 - **About Saima**: founder photo, bio, credentials, and the story behind Healthcare Tracks
+- **Choosing a program**: four tabs: a program finder (where programs are, how to apply, licensing, a tip, and the accreditor's directory for each career), a 15-point checklist for evaluating programs (saved in the browser and printable), features of programs that are easier to get into, and state and cost help (in-state tuition, regional tuition exchanges, licensing boards, loan repayment). Each career page also has a "How to apply" box. Edit `js/programs.js` to change this content.
 - **Blog**: SEO-friendly articles at `/blog/`, each on its own page with search-engine metadata, related career links, and an author box. The newest three also appear on the homepage.
 - **How to choose**: four questions to ask before applying to any program
 - **Resources**: centralized application services, accreditors, and outlook data
@@ -34,6 +35,7 @@ robots.txt        tells search engines where the sitemap is
 img/              Saima's photo (saima-ahmad.webp/.jpg) and hero avatar
 css/styles.css    all styling (light and dark mode, animations)
 js/careers.js     career content: edit this to add or change careers
+js/programs.js    how-to-apply data and the Choosing a program section
 js/app.js         site behavior, plus SITE settings at the top
 wrangler.jsonc    Cloudflare deploy settings
 .assetsignore     files Cloudflare should not publish

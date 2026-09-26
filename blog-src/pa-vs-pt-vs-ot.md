@@ -2,7 +2,7 @@
 title: "PA vs. PT vs. OT: How to Choose Between Three Popular Health Careers"
 description: Physician assistant, physical therapist, and occupational therapist programs attract many of the same students. Compare the work, training length, degrees, and exams side by side.
 date: 2026-09-26
-order: 4
+order: 7
 tag: Comparisons
 careers: pa, pt, ot
 ---

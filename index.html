@@ -39,7 +39,7 @@
       <a href="#explore">Explore</a>
       <a href="#degree">Your degree</a>
       <a href="#quiz">Quiz</a>
-      <a href="#resources">Resources</a>
+      <a href="#programs">Programs</a>
       <a href="/blog/">Blog</a>
       <a href="#about">About</a>
     </nav>
@@ -207,6 +207,97 @@
     </ol>
   </section>
 
+  <section class="section wrap reveal" id="programs">
+    <div class="section-head">
+      <p class="eyebrow">Choosing a program</p>
+      <h2>Where to study, how to apply, and what to compare</h2>
+      <p class="section-sub">The school you choose shapes your cost, your clinical training, and whether you can sit for your exam. Use these tools before you apply anywhere.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Choosing a program">
+      <button type="button" role="tab" id="tab-find" aria-controls="panel-find" aria-selected="true">Find programs</button>
+      <button type="button" role="tab" id="tab-check" aria-controls="panel-check" aria-selected="false" tabindex="-1">What to check</button>
+      <button type="button" role="tab" id="tab-easier" aria-controls="panel-easier" aria-selected="false" tabindex="-1">Easier to get in</button>
+      <button type="button" role="tab" id="tab-state" aria-controls="panel-state" aria-selected="false" tabindex="-1">State &amp; cost</button>
+    </div>
+
+    <div class="tab-panel" id="panel-find" role="tabpanel" aria-labelledby="tab-find">
+      <label class="finder-pick" for="finder-career">Pick a career
+        <select id="finder-career"></select>
+      </label>
+      <div id="finder-result" aria-live="polite"></div>
+      <p class="fine">Accreditor directories are the official list of programs whose graduates can sit for the certification exam. If a school isn't listed, ask why before you enroll.</p>
+    </div>
+
+    <div class="tab-panel" id="panel-check" role="tabpanel" aria-labelledby="tab-check" hidden>
+      <div class="check-top">
+        <p>Look up each item on the program's website, or ask at an information session. Many accreditors require programs to publish their exam pass, graduation, and employment rates.</p>
+        <div class="check-progress"><span class="check-bar"><span id="check-bar"></span></span><strong id="check-count"></strong></div>
+      </div>
+      <div class="checklist" id="checklist"></div>
+      <div class="check-actions">
+        <button type="button" class="btn btn-ghost btn-sm" id="check-print">Print checklist</button>
+        <button type="button" class="btn btn-link" id="check-reset">Clear</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panel-easier" role="tabpanel" aria-labelledby="tab-easier" hidden>
+      <p class="panel-intro">No accredited program is "easy," and it shouldn't be. But some programs have fewer barriers to getting in. Look for these features:</p>
+      <ul class="easy-list">
+        <li><strong>Rolling admission</strong><span>Applications are reviewed as they arrive, so applying early improves your odds.</span></li>
+        <li><strong>No GRE required</strong><span>Many MPH, OT, PA, and nursing programs have dropped the GRE.</span></li>
+        <li><strong>Direct applications</strong><span>Programs outside the big application services often get fewer applicants.</span></li>
+        <li><strong>Community college and hospital-based programs</strong><span>MLT, radiography, sonography, respiratory therapy, PTA, OTA, and ADN nursing programs offer lower-cost, local routes with strong clinical training.</span></li>
+        <li><strong>Post-bacc and accelerated tracks</strong><span>Post-bacc MLS certificates and accelerated BSN programs are built for people who already have a degree.</span></li>
+        <li><strong>Bridge programs</strong><span>MLT-to-MLS, LPN-to-RN, ADN-to-BSN, and PTA-to-DPT routes let you work while you move up.</span></li>
+        <li><strong>Part-time, evening, and hybrid formats</strong><span>These programs suit career changers and often draw a different applicant pool.</span></li>
+        <li><strong>Multiple start dates</strong><span>Programs that start more than once a year give you more chances to apply.</span></li>
+        <li><strong>Newer programs</strong><span>New programs may have more open seats. Confirm their accreditation status first, and that graduates can sit for the exam.</span></li>
+      </ul>
+      <div class="note-box"><strong>Before you apply anywhere:</strong> an easier admission never makes up for a program that isn't accredited. If you can't sit for the certification exam, you can't work in the field.</div>
+    </div>
+
+    <div class="tab-panel" id="panel-state" role="tabpanel" aria-labelledby="tab-state" hidden>
+      <div class="state-grid">
+        <div class="state-card">
+          <h3>Start with your own state</h3>
+          <p>Public universities and community colleges charge much less to state residents, and many public health programs, especially medical and dental schools, give residents priority for seats.</p>
+          <p>Check residency rules early. Most states require you to live there for about a year before you qualify for in-state tuition.</p>
+        </div>
+        <div class="state-card">
+          <h3>Regional tuition exchanges</h3>
+          <p>These programs let students from member states pay reduced tuition at public schools in other member states. Health programs are often included, but check each program's participation.</p>
+          <ul class="res-list">
+            <li><a href="https://www.wiche.edu" target="_blank" rel="noopener">WICHE</a><small>Western states (WUE, WRGP, and the PSEP health-professions program)</small></li>
+            <li><a href="https://www.sreb.org" target="_blank" rel="noopener">SREB Academic Common Market</a><small>Southern states</small></li>
+            <li><a href="https://msep.mhec.org" target="_blank" rel="noopener">MSEP</a><small>Midwestern states</small></li>
+            <li><a href="https://nebhe.org" target="_blank" rel="noopener">NEBHE Tuition Break</a><small>New England states</small></li>
+          </ul>
+        </div>
+        <div class="state-card">
+          <h3>Check state licensing</h3>
+          <p>Licensing rules differ by state. Before you choose a program, confirm it qualifies you for a license where you want to work, especially for online programs based in another state.</p>
+          <ul class="res-list">
+            <li><a href="https://www.ncsbn.org" target="_blank" rel="noopener">NCSBN</a><small>State boards of nursing</small></li>
+            <li><a href="https://www.fsbpt.org" target="_blank" rel="noopener">FSBPT</a><small>Physical therapy licensing</small></li>
+            <li><a href="https://www.nab-bea.org" target="_blank" rel="noopener">NAB</a><small>Nursing home administrators</small></li>
+          </ul>
+        </div>
+        <div class="state-card">
+          <h3>Lower the cost</h3>
+          <p>Federal and state programs repay loans or offer scholarships for people who work in underserved areas or at nonprofit employers.</p>
+          <ul class="res-list">
+            <li><a href="https://studentaid.gov" target="_blank" rel="noopener">FAFSA / Federal Student Aid</a><small>Grants and loans</small></li>
+            <li><a href="https://nhsc.hrsa.gov" target="_blank" rel="noopener">National Health Service Corps</a><small>Scholarships and loan repayment</small></li>
+            <li><a href="https://bhw.hrsa.gov/programs/nurse-corps" target="_blank" rel="noopener">Nurse Corps</a><small>Nursing scholarships and loan repayment</small></li>
+            <li><a href="https://studentaid.gov/pslf" target="_blank" rel="noopener">Public Service Loan Forgiveness</a><small>Nonprofit and public employers</small></li>
+            <li><a href="https://collegescorecard.ed.gov" target="_blank" rel="noopener">College Scorecard</a><small>Compare cost and outcomes</small></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section wrap reveal" id="resources">
     <div class="section-head">
       <p class="eyebrow">Resources</p>
@@ -245,27 +336,27 @@
     <div class="post-grid">
 <!--BLOG-LATEST-START-->
 <article class="post-card">
-  <a href="/blog/what-can-you-do-with-a-biology-degree">
-    <span class="post-tag">Degree guides</span>
-    <h3 class="post-card-title">What Can You Do With a Biology Degree? 17 Healthcare Careers Beyond Medical School</h3>
-    <span class="post-card-desc">A biology degree opens far more doors than medical school. Here are 17 healthcare careers biology graduates move into, from one-year lab programs to PA school, with the training each one takes.</span>
+  <a href="/blog/how-to-choose-a-healthcare-program">
+    <span class="post-tag">Applying</span>
+    <h3 class="post-card-title">How to Choose a Healthcare Program: 15 Things to Check Before You Apply</h3>
+    <span class="post-card-desc">Before you apply to a nursing, PA, therapy, or lab program, check these 15 things, from accreditation and exam pass rates to clinical placements and total cost.</span>
     <span class="post-meta">September 26, 2026 · 3 min read</span>
   </a>
 </article>
 <article class="post-card">
-  <a href="/blog/healthcare-careers-for-public-health-psychology-social-work-majors">
-    <span class="post-tag">Degree guides</span>
-    <h3 class="post-card-title">Healthcare Careers for Public Health, Psychology, and Social Work Graduates</h3>
-    <span class="post-card-desc">You don&#x27;t need a biology degree to work in healthcare. These careers welcome public health, psychology, sociology, and social work graduates, plus the prerequisites you may need to add.</span>
-    <span class="post-meta">September 26, 2026 · 2 min read</span>
+  <a href="/blog/easier-healthcare-programs-to-get-into">
+    <span class="post-tag">Applying</span>
+    <h3 class="post-card-title">Healthcare Programs That Are Easier to Get Into (and What to Watch Out For)</h3>
+    <span class="post-card-desc">Some healthcare programs have fewer barriers to admission. Learn which kinds of programs are more accessible, how to improve your odds, and the one thing you should never trade for an easy admission.</span>
+    <span class="post-meta">September 26, 2026 · 3 min read</span>
   </a>
 </article>
 <article class="post-card">
-  <a href="/blog/what-is-a-medical-laboratory-scientist">
-    <span class="post-tag">Career spotlights</span>
-    <h3 class="post-card-title">What Is a Medical Laboratory Scientist? The Healthcare Career Behind Most Diagnoses</h3>
-    <span class="post-card-desc">Medical laboratory scientists run the tests doctors rely on to diagnose and treat patients. Here&#x27;s what the job involves, how to become one in as little as a year after a science degree, and who it suits.</span>
-    <span class="post-meta">September 26, 2026 · 2 min read</span>
+  <a href="/blog/pay-less-for-healthcare-school">
+    <span class="post-tag">Applying</span>
+    <h3 class="post-card-title">How to Pay Less for Healthcare School: In-State Tuition, Regional Exchanges, and Loan Repayment</h3>
+    <span class="post-card-desc">Healthcare training doesn&#x27;t have to mean huge debt. Learn how in-state tuition, regional tuition exchanges, employer tuition help, and federal loan repayment programs can cut the cost.</span>
+    <span class="post-meta">September 26, 2026 · 3 min read</span>
   </a>
 </article>
 <!--BLOG-LATEST-END-->
@@ -357,6 +448,7 @@
 </dialog>
 
 <script src="js/careers.js"></script>
+<script src="js/programs.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

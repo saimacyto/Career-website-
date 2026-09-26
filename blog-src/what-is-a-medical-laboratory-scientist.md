@@ -2,7 +2,7 @@
 title: What Is a Medical Laboratory Scientist? The Healthcare Career Behind Most Diagnoses
 description: Medical laboratory scientists run the tests doctors rely on to diagnose and treat patients. Here's what the job involves, how to become one in as little as a year after a science degree, and who it suits.
 date: 2026-09-26
-order: 3
+order: 6
 tag: Career spotlights
 careers: mls, mlt, cytotech, histotech
 ---

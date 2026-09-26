@@ -2,7 +2,7 @@
 title: Healthcare Careers for Public Health, Psychology, and Social Work Graduates
 description: You don't need a biology degree to work in healthcare. These careers welcome public health, psychology, sociology, and social work graduates, plus the prerequisites you may need to add.
 date: 2026-09-26
-order: 2
+order: 5
 tag: Degree guides
 careers: ot, slp, gc, mph, healthadmin, rn, crc
 ---

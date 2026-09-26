@@ -2,7 +2,7 @@
 title: The Fastest Healthcare Careers If You Already Have a Bachelor's Degree
 description: Already hold a bachelor's degree? These healthcare careers can be reached in about a year, and some you can start right away. Here's how each route works.
 date: 2026-09-26
-order: 5
+order: 8
 tag: Career planning
 careers: mls, rn, sonography, nucmed, cytotech, crc, researchtech
 ---

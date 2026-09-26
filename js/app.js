@@ -319,6 +319,20 @@ const SITE = {
   };
   const traitFor = (c, keys) => c.tags.filter(t => keys.includes(t)).map(t => TRAIT[t]).join(", ") || "Varies";
 
+  function applyBlock(c) {
+    const a = (window.APPLY || {})[c.id];
+    if (!a) return "";
+    const via = a.via.map(([label, url]) => url
+      ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`
+      : `<span>${esc(label)}</span>`).join("");
+    return `<div class="d-sec d-apply" data-cat="${c.cat}"><h3>How to apply</h3>
+      <dl><div><dt>Where programs are</dt><dd>${esc(a.where)}</dd></div>
+        <div><dt>Apply through</dt><dd class="via">${via}</dd></div>
+        <div><dt>Licensing</dt><dd>${esc(a.license)}</dd></div>
+        <div><dt>Tip</dt><dd>${esc(a.tip)}</dd></div></dl>
+      <a href="#programs" data-close data-tab="panel-check" class="fine">Compare programs with the checklist →</a></div>`;
+  }
+
   function openCareer(id, push = true) {
     const c = byId[id];
     if (!c) return;
@@ -361,6 +375,7 @@ const SITE = {
       <div class="d-sec"><h3>What the work looks like</h3><p>${esc(c.day)}</p></div>
       <div class="d-sec" data-cat="${c.cat}"><h3>Your route in</h3>
         <ol class="steps">${c.route.map(s => `<li><span>${esc(s)}</span></li>`).join("")}</ol></div>
+      ${applyBlock(c)}
       <div class="d-sec" data-cat="${c.cat}"><h3>Links</h3>
         <div class="links">${links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div></div>
       ${video}
