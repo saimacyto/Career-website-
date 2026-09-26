@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Biology Career Compass</title>
+<meta name="description" content="A free, interactive guide to US health and science careers for biology students: lab science, physical and occupational therapy, PA, nursing, research, and more. Compare paths, take the quiz, and build a shortlist.">
+<meta name="theme-color" content="#3a3d8f">
+<meta property="og:title" content="Biology Career Compass">
+<meta property="og:description" content="27 health and science careers for biology students, compared side by side. Find the path that fits you.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saimacyto.github.io/Career-website-/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+  /* Apply the saved theme before first paint to avoid a flash. */
+  document.documentElement.classList.add("js");
+  try { var t = localStorage.getItem("bcc-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top" aria-label="Biology Career Compass home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">Biology Career Compass<small>by Smart Simplicity System</small></span>
+    </a>
+    <nav class="topnav" id="topnav" aria-label="Sections">
+      <a href="#map">Map</a>
+      <a href="#explore">Explore</a>
+      <a href="#biograd">Have a degree?</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#choose">How to choose</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <div class="top-actions">
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="Switch color theme" title="Switch light / dark">
+        <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="topnav">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow">For biology students and graduates in the US</p>
+      <h1>You studied biology.<br><span class="hl">Here's where it can take you.</span></h1>
+      <p class="lede">Twenty-seven health and science careers, laid out plainly: what the work looks like, how many years of school it takes, which degree and exam you need, and where to find accredited programs.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#quiz">Find paths that fit me</a>
+        <a class="btn btn-ghost" href="#explore">Browse all careers</a>
+      </div>
+      <dl class="stats" id="stats">
+        <div><dt>Careers</dt><dd data-count="27">27</dd></div>
+        <div><dt>Career areas</dt><dd data-count="4">4</dd></div>
+        <div><dt>Fastest route*</dt><dd><span data-count="1">1</span><small> yr</small></dd></div>
+        <div><dt>Application services</dt><dd data-count="11">11</dd></div>
+      </dl>
+      <p class="fine">*A one-year post-bacc program if you already hold a biology degree.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400" class="cells">
+        <g class="cell c1"><circle cx="150" cy="150" r="92" class="cyto"/><circle cx="135" cy="138" r="34" class="nuc"/><circle cx="126" cy="128" r="7" class="nucleolus"/></g>
+        <g class="cell c2"><circle cx="290" cy="120" r="54" class="cyto"/><circle cx="282" cy="114" r="20" class="nuc"/></g>
+        <g class="cell c3"><circle cx="270" cy="275" r="78" class="cyto"/><ellipse cx="262" cy="266" rx="30" ry="24" class="nuc"/></g>
+        <g class="cell c4"><circle cx="110" cy="300" r="42" class="cyto"/><circle cx="104" cy="294" r="15" class="nuc"/></g>
+        <g class="cell c5"><circle cx="355" cy="215" r="22" class="cyto"/><circle cx="352" cy="212" r="8" class="nuc"/></g>
+        <g class="cell c6"><circle cx="45" cy="190" r="18" class="cyto"/><circle cx="43" cy="187" r="6" class="nuc"/></g>
+      </svg>
+      <div class="compass" id="compass">
+        <span class="needle"></span>
+        <span class="c-n">Lab</span><span class="c-e">Rehab</span><span class="c-s">Clinical</span><span class="c-w">Research</span>
+      </div>
+    </div>
+    <ul class="hero-cats" id="hero-cats" aria-label="Career areas"></ul>
+  </section>
+
+  <section class="section wrap reveal" id="map">
+    <div class="section-head">
+      <p class="eyebrow">The map</p>
+      <h2>How long each path takes after high school</h2>
+      <p class="section-sub">Each dot is a career, placed at its typical total years of school. Tap a dot to open it. Longer is not better; it's a trade-off between time, cost, and scope of practice.</p>
+    </div>
+    <div class="ruler-scroll">
+      <div class="ruler" id="ruler" role="list"></div>
+    </div>
+    <p class="fine">Degree levels: <strong>2 yrs</strong> associate · <strong>4 yrs</strong> bachelor's · <strong>6–7 yrs</strong> master's or clinical doctorate · <strong>8+ yrs</strong> professional doctorate and residency.</p>
+  </section>
+
+  <section class="section wrap reveal" id="explore">
+    <div class="section-head">
+      <p class="eyebrow">Explore</p>
+      <h2>All careers</h2>
+      <p class="section-sub">Search, filter, and tap ♡ to save careers to your shortlist. Then compare up to three side by side.</p>
+    </div>
+    <div class="controls">
+      <label class="search">
+        <span class="sr-only">Search careers</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="search" type="search" placeholder="Search: lab, therapy, PA, microscope…" autocomplete="off">
+      </label>
+      <div class="chips" id="filters" role="group" aria-label="Filter by area"></div>
+      <label class="sort">
+        <span>Sort</span>
+        <select id="sort">
+          <option value="cat">By area</option>
+          <option value="years">Shortest first</option>
+          <option value="name">A to Z</option>
+        </select>
+      </label>
+    </div>
+    <div class="year-filter">
+      <label for="max-years">Years of school I'm ready for: <strong id="max-years-out">Any</strong></label>
+      <input type="range" id="max-years" min="2" max="12" step="1" value="12">
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="section wrap reveal" id="biograd">
+    <div class="section-head">
+      <p class="eyebrow">Already have a biology degree?</p>
+      <h2>Faster routes than starting over</h2>
+      <p class="section-sub">A bachelor's in biology already covers most prerequisites. These programs are built for people who have one.</p>
+    </div>
+    <div class="routes" id="routes"></div>
+  </section>
+
+  <section class="section wrap reveal" id="quiz">
+    <div class="section-head">
+      <p class="eyebrow">Which path fits me?</p>
+      <h2>Five questions, three suggestions</h2>
+      <p class="section-sub">This is a starting point for research, not a verdict. Shadow people in the jobs that come up.</p>
+    </div>
+    <div class="quiz-shell">
+      <div class="quiz-bar" aria-hidden="true"><span id="quiz-bar-fill"></span></div>
+      <form class="quiz" id="quiz-form" novalidate></form>
+    </div>
+    <div class="quiz-results" id="quiz-results" aria-live="polite"></div>
+  </section>
+
+  <section class="section wrap reveal" id="choose">
+    <div class="section-head">
+      <p class="eyebrow">Before you apply</p>
+      <h2>Four questions that save time and money</h2>
+      <p class="section-sub">Ask these about every career on your shortlist before you commit to a program.</p>
+    </div>
+    <ol class="choose">
+      <li><strong>What does the workday look like?</strong><span>Compare patient contact, lab time, how much you're on your feet, and the schedule. Shadow someone if you can.</span></li>
+      <li><strong>Which degree actually qualifies you?</strong><span>Biology covers most prerequisites, but licensed roles usually need a specific professional program.</span></li>
+      <li><strong>Is the program accredited?</strong><span>Only graduates of accredited programs can sit for most certification exams. Use the directory on each career page.</span></li>
+      <li><strong>What does your state require?</strong><span>Check your state licensing board for exams, fees, and rules before you enroll.</span></li>
+    </ol>
+  </section>
+
+  <section class="section wrap reveal" id="resources">
+    <div class="section-head">
+      <p class="eyebrow">Resources</p>
+      <h2>Where to apply and where to check facts</h2>
+    </div>
+    <div class="res-grid">
+      <div class="res-block">
+        <h3>Centralized applications</h3>
+        <p class="res-note">Most graduate health programs use one shared application.</p>
+        <ul class="res-list" id="apps"></ul>
+      </div>
+      <div class="res-block">
+        <h3>Find accredited programs</h3>
+        <p class="res-note">Only graduates of accredited programs can sit for most certification exams. Always check.</p>
+        <ul class="res-list" id="accred"></ul>
+      </div>
+      <div class="res-block">
+        <h3>Pay and job outlook</h3>
+        <p class="res-note">Salaries change every year, so this guide links to the source instead of copying numbers.</p>
+        <ul class="res-list">
+          <li><a href="https://www.bls.gov/ooh/healthcare/home.htm" target="_blank" rel="noopener">BLS Occupational Outlook: Healthcare</a></li>
+          <li><a href="https://www.bls.gov/ooh/life-physical-and-social-science/home.htm" target="_blank" rel="noopener">BLS Occupational Outlook: Life sciences</a></li>
+          <li><a href="https://www.onetonline.org" target="_blank" rel="noopener">O*NET OnLine (tasks and skills)</a></li>
+          <li><a href="https://explorehealthcareers.org" target="_blank" rel="noopener">ExploreHealthCareers.org</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap series reveal" id="series">
+    <div class="series-card">
+      <div>
+        <p class="eyebrow">The video series</p>
+        <h2>Walk through each career with me</h2>
+        <p>This site goes with the Smart Simplicity System series on biology and health careers. I'm a clinical laboratory professional with 25 years in histology, cytology, and lab operations, and each episode covers one path: what the job is really like, how to get in, and what I'd tell a student.</p>
+        <p class="fine">Every career has its own link you can share, such as <code>#career-mls</code> or <code>#career-pt</code>.</p>
+      </div>
+      <a class="btn btn-primary" id="channel-link" href="#" target="_blank" rel="noopener" hidden>Watch on YouTube</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p><strong>Biology Career Compass</strong> · Smart Simplicity System</p>
+    <p class="fine">Requirements change. Always confirm current details with the accrediting body, certification board, and the programs you apply to. Content last reviewed September 2026. This site is educational and is not affiliated with any organization linked here.</p>
+  </div>
+</footer>
+
+<aside class="tray" id="tray" aria-label="Your shortlist" hidden>
+  <div class="tray-head">
+    <button type="button" class="tray-toggle" id="tray-toggle" aria-expanded="true">
+      <span class="heart" aria-hidden="true">♥</span> Shortlist <span class="badge" id="tray-count">0</span>
+    </button>
+    <span class="fine" id="tray-hint">Tick 2–3 to compare</span>
+  </div>
+  <div class="tray-body" id="tray-body">
+    <ul class="tray-list" id="tray-list"></ul>
+    <div class="tray-actions">
+      <button type="button" class="btn btn-primary btn-sm" id="compare-btn" disabled>Compare</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="clear-btn">Clear</button>
+    </div>
+  </div>
+</aside>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
+</button>
+
+<dialog class="detail" id="detail" aria-labelledby="d-name">
+  <div class="detail-inner" id="detail-body"></div>
+</dialog>
+
+<dialog class="detail compare" id="compare" aria-labelledby="cmp-title">
+  <div class="detail-inner" id="compare-body"></div>
+</dialog>
+
+<script src="js/careers.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
