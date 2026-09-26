@@ -1,6 +1,6 @@
-# Biology Career Compass
+# Healthcare Tracks
 
-A free, interactive website that helps biology students and graduates in the US compare 27 health and science careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, dietetics, and research/industry roles.
+A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 27 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, dietetics, and research/industry roles.
 
 Companion site for the **Smart Simplicity System** video series.
 
@@ -11,7 +11,7 @@ Companion site for the **Smart Simplicity System** video series.
 - **Map**: every career plotted by years of school after high school
 - **Explore**: searchable, filterable cards with a "years of school I'm ready for" slider. Each card opens a full detail page (credential, degree, exam, route in, accreditor, professional society, BLS pay link, video slot)
 - **Shortlist and compare**: tap ♡ on any career to save it, then compare two or three side by side (time, degree, exam, patient contact, pace, setting, accreditor). The shortlist is saved in the visitor's browser.
-- **Already have a biology degree?**: faster routes such as post-bacc MLS, accelerated BSN, and imaging certificates
+- **Start from your degree**: pick your major (science, health science, public health, psychology/social work, pre-med, physics/engineering, or any other bachelor's) to see careers that fit that background, plus faster routes such as post-bacc MLS, accelerated BSN, and imaging certificates. Edit the `DEGREES` list in `js/app.js` to change these.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
 - **How to choose**: four questions to ask before applying to any program
 - **Resources**: centralized application services, accreditors, and outlook data

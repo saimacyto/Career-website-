@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Biology Career Compass</title>
-<meta name="description" content="A free, interactive guide to US health and science careers for biology students: lab science, physical and occupational therapy, PA, nursing, research, and more. Compare paths, take the quiz, and build a shortlist.">
+<title>Healthcare Tracks</title>
+<meta name="description" content="A free, interactive guide to US healthcare careers for every major: biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more. Compare 27 paths, take the quiz, and build a shortlist.">
 <meta name="theme-color" content="#3a3d8f">
-<meta property="og:title" content="Biology Career Compass">
-<meta property="og:description" content="27 health and science careers for biology students, compared side by side. Find the path that fits you.">
+<meta property="og:title" content="Healthcare Tracks">
+<meta property="og:description" content="27 healthcare careers for any major, compared side by side. Find the track that fits you.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://healthcaretracks.com/">
 <link rel="canonical" href="https://healthcaretracks.com/">
@@ -28,14 +28,14 @@
 
 <header class="topbar">
   <div class="wrap topbar-inner">
-    <a class="brand" href="#top" aria-label="Biology Career Compass home">
+    <a class="brand" href="#top" aria-label="Healthcare Tracks home">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-text">Biology Career Compass<small>by Smart Simplicity System</small></span>
+      <span class="brand-text">Healthcare Tracks<small>by Smart Simplicity System</small></span>
     </a>
     <nav class="topnav" id="topnav" aria-label="Sections">
       <a href="#map">Map</a>
       <a href="#explore">Explore</a>
-      <a href="#biograd">Have a degree?</a>
+      <a href="#degree">Your degree</a>
       <a href="#quiz">Quiz</a>
       <a href="#choose">How to choose</a>
       <a href="#resources">Resources</a>
@@ -55,12 +55,12 @@
 <main id="main">
   <section class="hero wrap" id="top">
     <div class="hero-copy">
-      <p class="eyebrow">For biology students and graduates in the US</p>
-      <h1>You studied biology.<br><span class="hl">Here's where it can take you.</span></h1>
-      <p class="lede">Twenty-seven health and science careers, laid out plainly: what the work looks like, how many years of school it takes, which degree and exam you need, and where to find accredited programs.</p>
+      <p class="eyebrow">For students, graduates, and career changers in the US</p>
+      <h1>Whatever you studied,<br><span class="hl">there's a healthcare track for you.</span></h1>
+      <p class="lede">Biology, chemistry, public health, health science, psychology, social work, pre-med, physics, or something else entirely. Twenty-seven healthcare careers, laid out plainly: what the work looks like, how many years of school it takes, which degree and exam you need, and where to find accredited programs.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#quiz">Find paths that fit me</a>
-        <a class="btn btn-ghost" href="#explore">Browse all careers</a>
+        <a class="btn btn-ghost" href="#degree">Start from my degree</a>
       </div>
       <dl class="stats" id="stats">
         <div><dt>Careers</dt><dd data-count="27">27</dd></div>
@@ -68,7 +68,7 @@
         <div><dt>Fastest route*</dt><dd><span data-count="1">1</span><small> yr</small></dd></div>
         <div><dt>Application services</dt><dd data-count="11">11</dd></div>
       </dl>
-      <p class="fine">*A one-year post-bacc program if you already hold a biology degree.</p>
+      <p class="fine">*A one-year post-bacc program if you already hold a science degree.</p>
     </div>
     <div class="hero-art" aria-hidden="true">
       <svg viewBox="0 0 400 400" class="cells">
@@ -129,11 +129,19 @@
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="section wrap reveal" id="biograd">
+  <section class="section wrap reveal" id="degree">
     <div class="section-head">
-      <p class="eyebrow">Already have a biology degree?</p>
-      <h2>Faster routes than starting over</h2>
-      <p class="section-sub">A bachelor's in biology already covers most prerequisites. These programs are built for people who have one.</p>
+      <p class="eyebrow">Start from your degree</p>
+      <h2>What did you study?</h2>
+      <p class="section-sub">Pick your major to see healthcare careers people with that background often move into. Most graduate health programs accept any major once you finish their prerequisites.</p>
+    </div>
+    <div class="chips degree-chips" id="degree-chips" role="tablist" aria-label="Your degree"></div>
+    <div class="degree-panel" id="degree-panel" role="tabpanel" aria-live="polite"></div>
+
+    <div class="section-head sub-head">
+      <p class="eyebrow">Already have a bachelor's?</p>
+      <h3 class="h-sub">Faster routes than starting over</h3>
+      <p class="section-sub">These programs are built for people who already hold a degree.</p>
     </div>
     <div class="routes" id="routes"></div>
   </section>
@@ -159,7 +167,7 @@
     </div>
     <ol class="choose">
       <li><strong>What does the workday look like?</strong><span>Compare patient contact, lab time, how much you're on your feet, and the schedule. Shadow someone if you can.</span></li>
-      <li><strong>Which degree actually qualifies you?</strong><span>Biology covers most prerequisites, but licensed roles usually need a specific professional program.</span></li>
+      <li><strong>Which degree actually qualifies you?</strong><span>Your degree may cover some prerequisites, but licensed roles usually need a specific professional program.</span></li>
       <li><strong>Is the program accredited?</strong><span>Only graduates of accredited programs can sit for most certification exams. Use the directory on each career page.</span></li>
       <li><strong>What does your state require?</strong><span>Check your state licensing board for exams, fees, and rules before you enroll.</span></li>
     </ol>
@@ -199,7 +207,7 @@
       <div>
         <p class="eyebrow">The video series</p>
         <h2>Walk through each career with me</h2>
-        <p>This site goes with the Smart Simplicity System series on biology and health careers. I'm a clinical laboratory professional with 25 years in histology, cytology, and lab operations, and each episode covers one path: what the job is really like, how to get in, and what I'd tell a student.</p>
+        <p>This site goes with the Smart Simplicity System series on healthcare careers. I'm a clinical laboratory professional with 25 years in histology, cytology, and lab operations, and each episode covers one path: what the job is really like, how to get in, and what I'd tell a student.</p>
         <p class="fine">Every career has its own link you can share, such as <code>#career-mls</code> or <code>#career-pt</code>.</p>
       </div>
       <a class="btn btn-primary" id="channel-link" href="#" target="_blank" rel="noopener" hidden>Watch on YouTube</a>
@@ -209,7 +217,7 @@
 
 <footer class="footer">
   <div class="wrap">
-    <p><strong>Biology Career Compass</strong> · Smart Simplicity System</p>
+    <p><strong>Healthcare Tracks</strong> · Smart Simplicity System · <a href="https://healthcaretracks.com/">healthcaretracks.com</a></p>
     <p class="fine">Requirements change. Always confirm current details with the accrediting body, certification board, and the programs you apply to. Content last reviewed September 2026. This site is educational and is not affiliated with any organization linked here.</p>
   </div>
 </footer>

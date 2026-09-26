@@ -1,4 +1,4 @@
-/* Biology Career Compass — app logic. No libraries, no build step. */
+/* Healthcare Tracks — app logic. No libraries, no build step. */
 
 /* ---- Site settings: edit these two lines ---- */
 const SITE = {
@@ -446,14 +446,58 @@ const SITE = {
   }
   $("#compare-btn").addEventListener("click", openCompare);
 
-  /* ---------------- biology-grad fast routes ---------------- */
+  /* ---------------- start from your degree ---------------- */
+  const DEGREES = [
+    { key: "science", label: "Biology, chemistry, or biochemistry",
+      note: "You likely have most science prerequisites already. Lab careers can take you in with one extra year, and PA, pharmacy, and medicine build directly on your coursework.",
+      ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "physician", "dentist"] },
+    { key: "health", label: "Health science, kinesiology, or exercise science",
+      note: "A common launch pad for rehab careers. Compare your transcript with each program's prerequisites; chemistry and physics are the usual gaps.",
+      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "crc"] },
+    { key: "publichealth", label: "Public health or health administration",
+      note: "A natural fit for population health, research, and program roles. Add science prerequisites and clinical programs open up too.",
+      ids: ["mph", "crc", "rn", "dietitian", "gc"] },
+    { key: "people", label: "Psychology, social work, or sociology",
+      note: "Listening and counseling skills matter most in therapy and counseling careers. Plan on adding biology, anatomy, and statistics prerequisites.",
+      ids: ["ot", "slp", "gc", "rn", "mph", "crc"] },
+    { key: "premed", label: "Pre-med (not going, or not yet)",
+      note: "Your coursework transfers to many other clinical paths, several with shorter training and less debt than medical school.",
+      ids: ["pa", "mls", "gc", "pharmacist", "dentist", "rn", "crc"] },
+    { key: "quant", label: "Physics, math, engineering, or computer science",
+      note: "Imaging and data-heavy roles value quantitative skills. Imaging programs usually still ask for anatomy and physiology.",
+      ids: ["bioinformatics", "nucmed", "radtech", "sonography", "researchtech"] },
+    { key: "other", label: "Any other bachelor's",
+      note: "Business, English, education, and every other major count. Many graduate health programs accept any degree once prerequisites are done, and accelerated nursing is built for second-degree students.",
+      ids: ["rn", "ot", "slp", "pa", "mph", "crc"] }
+  ];
+  let degreeKey = DEGREES[0].key;
+  function renderDegree() {
+    $("#degree-chips").innerHTML = DEGREES.map(d =>
+      `<button type="button" class="chip" role="tab" data-degree="${d.key}" aria-selected="${d.key === degreeKey}" aria-pressed="${d.key === degreeKey}">${esc(d.label)}</button>`).join("");
+    const d = DEGREES.find(x => x.key === degreeKey);
+    $("#degree-panel").innerHTML = `<p class="degree-note">${esc(d.note)}</p>
+      <div class="degree-list">${d.ids.map((id, i) => {
+        const c = byId[id];
+        return `<button type="button" class="degree-card" data-cat="${c.cat}" data-open="${c.id}" style="--i:${i}">
+          <span class="d-cat">${esc(CATS[c.cat].label)}</span>
+          <strong>${esc(c.name)}</strong>
+          <span class="fine">${esc(c.degree)} · ${yrsShort(c)}</span>
+        </button>`;
+      }).join("")}</div>`;
+  }
+  $("#degree-chips").addEventListener("click", e => {
+    const b = e.target.closest("[data-degree]");
+    if (b) { degreeKey = b.dataset.degree; renderDegree(); }
+  });
+  renderDegree();
+
   const ROUTES = [
-    { time: "About 12 months", title: "Post-bacc MLS certificate", text: "Hospital- and university-based programs take biology graduates straight into the clinical lab, then the ASCP MLS exam.", ids: ["mls"] },
+    { time: "About 12 months", title: "Post-bacc MLS certificate", text: "Hospital- and university-based programs take biology and chemistry graduates straight into the clinical lab, then the ASCP MLS exam.", ids: ["mls"] },
     { time: "12–24 months", title: "Cytotechnology program", text: "Certificate or master's programs for science graduates who like microscope diagnosis.", ids: ["cytotech"] },
     { time: "12–18 months", title: "Accelerated BSN", text: "Second-degree nursing programs build on your first bachelor's, then the NCLEX-RN.", ids: ["rn"] },
     { time: "12–18 months", title: "Imaging certificates", text: "Sonography and nuclear medicine offer certificate tracks for people who already hold a degree.", ids: ["sonography", "nucmed"] },
-    { time: "Start now", title: "Research and trials jobs", text: "Research tech and clinical research coordinator roles hire biology graduates directly and pay while you decide.", ids: ["researchtech", "crc"] },
-    { time: "2–3 years", title: "Graduate health programs", text: "Your prerequisites are mostly done. Add observation or patient-care hours and apply to PA, OT, PT, or genetic counseling.", ids: ["pa", "ot", "pt", "gc"] }
+    { time: "Start now", title: "Research and trials jobs", text: "Research tech and clinical research coordinator roles hire science and health graduates directly and pay while you decide.", ids: ["researchtech", "crc"] },
+    { time: "2–3 years", title: "Graduate health programs", text: "Any major can apply once prerequisites are done. Add observation or patient-care hours and apply to PA, OT, PT, or genetic counseling.", ids: ["pa", "ot", "pt", "gc"] }
   ];
   $("#routes").innerHTML = ROUTES.map((r, i) => `
     <div class="route" style="--i:${i}"><span class="time">${esc(r.time)}</span><h3>${esc(r.title)}</h3><p>${esc(r.text)}</p>

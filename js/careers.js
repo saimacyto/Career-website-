@@ -1,5 +1,5 @@
 /*
-  Career data for Biology Career Compass.
+  Career data for Healthcare Tracks.
   ------------------------------------------------------------------
   To add a career: copy one object, give it a unique `id`, fill the fields.
   To attach a video from the series: paste the YouTube URL into `video`.
