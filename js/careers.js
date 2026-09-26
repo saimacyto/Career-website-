@@ -584,6 +584,32 @@ window.CAREERS = [
     video: ""
   },
   {
+    id: "healthadmin",
+    name: "Healthcare Administrator",
+    cat: "clinical",
+    credential: "MHA, FACHE",
+    tagline: "Runs the business side of care: departments, clinics, budgets, staffing, and quality.",
+    day: "You plan budgets, hire and lead staff, track quality and patient-safety measures, keep the organization compliant with regulations, and work with physicians and nurses to improve how care is delivered. Titles include practice manager, department director, and hospital administrator.",
+    years: 6,
+    yearsLabel: "4–6 years (bachelor's; an MHA or similar master's adds about 2 years)",
+    degree: "Bachelor's or Master's (MHA)",
+    route: [
+      "Earn a bachelor's in any field; health administration, public health, business, and clinical degrees are common starting points",
+      "Gain experience in a healthcare setting, such as a coordinator, supervisor, or clinical role",
+      "Complete a master's in health administration (MHA), public health, or business; CAHME accredits MHA programs",
+      "Optional: board certification in healthcare management (FACHE) through ACHE. Nursing home administrators need a state license."
+    ],
+    exam: "None required (FACHE optional; state license for nursing home administrators)",
+    accreditor: { name: "CAHME", url: "https://cahme.org" },
+    links: [
+      { label: "ACHE (professional society)", url: "https://www.ache.org" },
+      { label: "AUPHA (health administration programs)", url: "https://www.aupha.org" }
+    ],
+    bls: BLS + "management/medical-and-health-services-managers.htm",
+    tags: ["behind", "data", "fast", "hospital"],
+    video: ""
+  },
+  {
     id: "dietitian",
     name: "Registered Dietitian Nutritionist",
     cat: "clinical",
@@ -746,6 +772,6 @@ window.CAREERS = [
 window.CATEGORIES = {
   lab: { label: "Lab & Diagnostics", blurb: "Testing, imaging, and the science behind diagnosis." },
   rehab: { label: "Rehab & Therapy", blurb: "Restoring movement, breathing, speech, and daily function." },
-  clinical: { label: "Clinical & Pre-professional", blurb: "Direct care, prescribing, and population health." },
+  clinical: { label: "Clinical & Pre-professional", blurb: "Direct care, prescribing, population health, and health system leadership." },
   research: { label: "Research & Industry", blurb: "Labs, trials, data, and the path to new treatments." }
 };

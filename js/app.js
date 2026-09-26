@@ -20,7 +20,7 @@ const SITE = {
     at: "Athletic trainer", pa: "PA", rn: "Nurse (RN)", pharmacist: "Pharmacist", dentist: "Dentist",
     physician: "Physician", gc: "Genetic counselor", mph: "Public health", dietitian: "Dietitian",
     researchtech: "Research tech", crc: "Research coordinator", regulatory: "Regulatory", bioinformatics: "Bioinformatics",
-    medscientist: "PhD scientist"
+    medscientist: "PhD scientist", healthadmin: "Health admin"
   };
 
   const $ = sel => document.querySelector(sel);
@@ -75,7 +75,7 @@ const SITE = {
         navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    navLinks.forEach(a => { const s = document.querySelector(a.getAttribute("href")); if (s) navObs.observe(s); });
+    navLinks.forEach(a => { const h = a.getAttribute("href"); const s = h.startsWith("#") && document.querySelector(h); if (s) navObs.observe(s); });
 
     /* reveal-on-scroll */
     const revObs = new IntersectionObserver(entries => {
@@ -101,6 +101,9 @@ const SITE = {
       requestAnimationFrame(tick);
     });
   }
+  /* keep every "N careers" figure in sync with careers.js */
+  $$("[data-total]").forEach(el => { el.dataset.count = careers.length; el.textContent = careers.length; });
+  $$("[data-total-text]").forEach(el => { el.textContent = careers.length; });
   countUp();
 
   const compass = $("#compass");
@@ -453,13 +456,13 @@ const SITE = {
       ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "physician", "dentist"] },
     { key: "health", label: "Health science, kinesiology, or exercise science",
       note: "A common launch pad for rehab careers. Compare your transcript with each program's prerequisites; chemistry and physics are the usual gaps.",
-      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "crc"] },
+      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "healthadmin", "crc"] },
     { key: "publichealth", label: "Public health or health administration",
       note: "A natural fit for population health, research, and program roles. Add science prerequisites and clinical programs open up too.",
-      ids: ["mph", "crc", "rn", "dietitian", "gc"] },
+      ids: ["mph", "healthadmin", "crc", "rn", "dietitian", "gc"] },
     { key: "people", label: "Psychology, social work, or sociology",
       note: "Listening and counseling skills matter most in therapy and counseling careers. Plan on adding biology, anatomy, and statistics prerequisites.",
-      ids: ["ot", "slp", "gc", "rn", "mph", "crc"] },
+      ids: ["ot", "slp", "gc", "rn", "mph", "healthadmin", "crc"] },
     { key: "premed", label: "Pre-med (not going, or not yet)",
       note: "Your coursework transfers to many other clinical paths, several with shorter training and less debt than medical school.",
       ids: ["pa", "mls", "gc", "pharmacist", "dentist", "rn", "crc"] },
@@ -468,7 +471,7 @@ const SITE = {
       ids: ["bioinformatics", "nucmed", "radtech", "sonography", "researchtech"] },
     { key: "other", label: "Any other bachelor's",
       note: "Business, English, education, and every other major count. Many graduate health programs accept any degree once prerequisites are done, and accelerated nursing is built for second-degree students.",
-      ids: ["rn", "ot", "slp", "pa", "mph", "crc"] }
+      ids: ["rn", "ot", "slp", "pa", "mph", "healthadmin", "crc"] }
   ];
   let degreeKey = DEGREES[0].key;
   function renderDegree() {

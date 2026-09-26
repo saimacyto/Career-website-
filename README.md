@@ -1,6 +1,6 @@
 # Healthcare Tracks
 
-A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 27 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, dietetics, and research/industry roles.
+A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 28 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, healthcare administration, dietetics, and research/industry roles.
 
 Companion site for the **Smart Simplicity System** video series.
 
@@ -15,6 +15,7 @@ Companion site for the **Smart Simplicity System** video series.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
 - **What you'll get**: six benefit cards and a three-step "how it works" strip near the top
 - **About Saima**: founder photo, bio, credentials, and the story behind Healthcare Tracks
+- **Blog**: SEO-friendly articles at `/blog/`, each on its own page with search-engine metadata, related career links, and an author box. The newest three also appear on the homepage.
 - **How to choose**: four questions to ask before applying to any program
 - **Resources**: centralized application services, accreditors, and outlook data
 - Light and dark mode toggle, mobile menu, and shareable links for every career
@@ -24,6 +25,12 @@ No frameworks, no build step. Plain HTML, CSS, and JavaScript.
 ```
 index.html        page structure
 favicon.svg       browser tab icon
+blog-src/         blog articles, written in Markdown (edit these)
+blog/             generated article pages (don't edit by hand)
+scripts/          build-blog.py turns blog-src into blog pages
+sitemap.xml       list of pages for Google (generated)
+robots.txt        tells search engines where the sitemap is
+404.html          page shown for broken links
 img/              Saima's photo (saima-ahmad.webp/.jpg) and hero avatar
 css/styles.css    all styling (light and dark mode, animations)
 js/careers.js     career content: edit this to add or change careers
@@ -101,6 +108,17 @@ Every career has its own shareable link for video descriptions:
 | Cytotechnologist | https://healthcaretracks.com/#career-cytotech |
 
 The pattern is always `#career-<id>`, using the `id` in `careers.js`.
+
+## Write a new blog article
+
+1. Copy any file in `blog-src/`, for example `blog-src/pa-vs-pt-vs-ot.md`, and rename it. The file name becomes the web address, so use lowercase words with dashes: `blog-src/how-to-get-into-pa-school.md` becomes `healthcaretracks.com/blog/how-to-get-into-pa-school`.
+2. Edit the top section (title, description, date, tag, careers) and write the article below it. Use `## ` for section headings, `- ` for bullet points, `**bold**`, and `[link text](/#career-pa)` for links.
+3. Run `python3 scripts/build-blog.py`. It creates the article page, updates the blog home page, the homepage cards, and `sitemap.xml`.
+4. Commit and push. Cloudflare publishes it within a minute.
+
+Tips for search: put the question people type into Google in the title ("How to become a…", "What can you do with a…"), keep the description under about 160 characters, and link to related career pages.
+
+After the first publish, add the site in [Google Search Console](https://search.google.com/search-console) and submit `https://healthcaretracks.com/sitemap.xml` so Google finds new articles quickly.
 
 ## Add a career
 

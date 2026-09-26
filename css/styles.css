@@ -584,3 +584,4 @@ html:has(.tray:not([hidden])) { scroll-padding-bottom: 220px; }
 .story blockquote footer { font-family: var(--f-display); font-weight: 700; color: var(--eosin); }
 .story blockquote footer::before { content: "— "; }
 @media (max-width: 800px) { .about-photo::before { inset: 12px -8px -8px 12px; } }
+.blog-all { justify-self: start; }

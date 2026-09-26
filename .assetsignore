@@ -9,3 +9,5 @@ wrangler.jsonc
 wrangler.toml
 README.md
 *.zip
+blog-src
+scripts
