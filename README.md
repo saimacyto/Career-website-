@@ -4,7 +4,7 @@ A free, interactive website that helps biology students and graduates in the US 
 
 Companion site for the **Smart Simplicity System** video series.
 
-**Live site:** https://career-website.saimacyto.workers.dev/ (Cloudflare)
+**Live site:** https://healthcaretracks.com/ (also at https://career-website.saimacyto.workers.dev/)
 
 ## What's on the site
 
@@ -45,7 +45,11 @@ This repo is ready for Cloudflare Workers (static assets). `wrangler.jsonc` tell
 1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick `saimacyto/Career-website-`.
 2. Leave **Build command** empty. **Deploy command**: `npx wrangler deploy`. **Root directory**: `/`.
 3. Make sure the Worker name in Cloudflare matches `"name"` in `wrangler.jsonc` (currently `career-website`). If Cloudflare shows a different name, change one so they match.
-4. Deploy. The site appears at https://career-website.saimacyto.workers.dev, and every push to `main` redeploys it.
+4. Deploy. The site appears at https://healthcaretracks.com (and https://career-website.saimacyto.workers.dev), and every push to `main` redeploys it.
+
+### Custom domain
+
+`wrangler.jsonc` connects `healthcaretracks.com` and `www.healthcaretracks.com` to the Worker through `routes` with `custom_domain: true`. Cloudflare creates the DNS records and SSL certificate automatically on deploy. This only works because the domain is in the same Cloudflare account. If a deploy fails saying a DNS record already exists for the hostname, delete that A/AAAA/CNAME record under **DNS → Records** for `healthcaretracks.com` and redeploy.
 
 If you use the older **Pages** flow instead: framework preset **None**, build command empty, **Build output directory** `/`.
 
@@ -87,11 +91,11 @@ Every career has its own shareable link for video descriptions:
 
 | Career | Link |
 |---|---|
-| Medical Laboratory Scientist | https://career-website.saimacyto.workers.dev/#career-mls |
-| Physical Therapist | https://career-website.saimacyto.workers.dev/#career-pt |
-| Occupational Therapist | https://career-website.saimacyto.workers.dev/#career-ot |
-| Physician Assistant | https://career-website.saimacyto.workers.dev/#career-pa |
-| Cytotechnologist | https://career-website.saimacyto.workers.dev/#career-cytotech |
+| Medical Laboratory Scientist | https://healthcaretracks.com/#career-mls |
+| Physical Therapist | https://healthcaretracks.com/#career-pt |
+| Occupational Therapist | https://healthcaretracks.com/#career-ot |
+| Physician Assistant | https://healthcaretracks.com/#career-pa |
+| Cytotechnologist | https://healthcaretracks.com/#career-cytotech |
 
 The pattern is always `#career-<id>`, using the `id` in `careers.js`.
 

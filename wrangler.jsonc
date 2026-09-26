@@ -6,6 +6,11 @@
   "compatibility_date": "2026-09-01",
   "workers_dev": true,
   "preview_urls": true,
+  // Custom domains: the domain must be in the same Cloudflare account.
+  "routes": [
+    { "pattern": "healthcaretracks.com", "custom_domain": true },
+    { "pattern": "www.healthcaretracks.com", "custom_domain": true }
+  ],
   "observability": {
     "enabled": false
   },
