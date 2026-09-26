@@ -1,0 +1,11 @@
+# Files that exist in the repo but should not be published by Cloudflare
+.git
+.github
+.gitignore
+.assetsignore
+.wrangler
+node_modules
+wrangler.jsonc
+wrangler.toml
+README.md
+*.zip

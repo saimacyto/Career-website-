@@ -1,3 +1,5 @@
 .DS_Store
 Thumbs.db
 *.zip
+.wrangler/
+node_modules/

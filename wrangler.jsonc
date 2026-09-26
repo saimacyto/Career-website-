@@ -1,0 +1,12 @@
+// Cloudflare Workers config: serve this repo as a static website.
+// "name" must match the Worker name shown in your Cloudflare dashboard.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "career-website",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  }
+}

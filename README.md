@@ -25,6 +25,8 @@ favicon.svg       browser tab icon
 css/styles.css    all styling (light and dark mode, animations)
 js/careers.js     career content: edit this to add or change careers
 js/app.js         site behavior, plus SITE settings at the top
+wrangler.jsonc    Cloudflare deploy settings
+.assetsignore     files Cloudflare should not publish
 .nojekyll         tells GitHub Pages to serve files as-is
 ```
 
@@ -35,6 +37,17 @@ The site files sit at the root of this repository, which is what GitHub Pages ne
 1. In this repository, go to **Settings → Pages**.
 2. Under **Build and deployment**, set **Source** to **Deploy from a branch**, choose branch `main` and folder `/ (root)`, then click **Save**.
 3. After a minute or two the site is live at https://saimacyto.github.io/Career-website-/. Every change pushed to `main` republishes automatically.
+
+## Deploy on Cloudflare
+
+This repo is ready for Cloudflare Workers (static assets). `wrangler.jsonc` tells Cloudflare to serve the files in the repo root, and `.assetsignore` keeps the README, config, and `.git` folder from being published.
+
+1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick `saimacyto/Career-website-`.
+2. Leave **Build command** empty. **Deploy command**: `npx wrangler deploy`. **Root directory**: `/`.
+3. Make sure the Worker name in Cloudflare matches `"name"` in `wrangler.jsonc` (currently `career-website`). If Cloudflare shows a different name, change one so they match.
+4. Deploy. The site appears at `https://career-website.<your-subdomain>.workers.dev`, and every push to `main` redeploys it.
+
+If you use the older **Pages** flow instead: framework preset **None**, build command empty, **Build output directory** `/`.
 
 ## Preview on your computer
 
