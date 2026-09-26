@@ -522,3 +522,20 @@ html:has(.tray:not([hidden])) { scroll-padding-bottom: 220px; }
 .series-card { position: relative; overflow: hidden; }
 .series-card::after { content: ""; position: absolute; right: -80px; top: -80px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--eosin) 30%, transparent), transparent 70%); pointer-events: none; }
 [hidden] { display: none !important; }
+
+/* start from your degree */
+.degree-chips .chip[aria-pressed="true"] { background: var(--hema); border-color: var(--hema); color: var(--on-accent); }
+.degree-panel { display: grid; gap: 14px; padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.degree-note { color: var(--muted); max-width: 75ch; }
+.degree-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.degree-card {
+  display: grid; gap: 4px; text-align: left; font: inherit; color: var(--ink); cursor: pointer;
+  background: var(--bg); border: 1px solid var(--line); border-left: 4px solid var(--cat); border-radius: 8px; padding: 12px 14px;
+  animation: rise .35s ease both; animation-delay: calc(var(--i, 0) * 40ms);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.degree-card:hover, .degree-card:focus-visible { transform: translateY(-2px); border-color: var(--cat); }
+.degree-card .d-cat { color: var(--cat); font-size: .68rem; }
+.degree-card strong { font-family: var(--f-display); font-size: 1.02rem; line-height: 1.2; }
+.sub-head { margin-top: 24px; }
+.h-sub { font-size: clamp(1.3rem, 2.4vw, 1.7rem); }

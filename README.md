@@ -1,17 +1,17 @@
-# Biology Career Compass
+# Healthcare Tracks
 
-A free, interactive website that helps biology students and graduates in the US compare 27 health and science careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, dietetics, and research/industry roles.
+A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 27 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, dietetics, and research/industry roles.
 
 Companion site for the **Smart Simplicity System** video series.
 
-**Live site:** https://saimacyto.github.io/Career-website-/
+**Live site:** https://healthcaretracks.com/ (also at https://career-website.saimacyto.workers.dev/)
 
 ## What's on the site
 
 - **Map**: every career plotted by years of school after high school
 - **Explore**: searchable, filterable cards with a "years of school I'm ready for" slider. Each card opens a full detail page (credential, degree, exam, route in, accreditor, professional society, BLS pay link, video slot)
 - **Shortlist and compare**: tap ♡ on any career to save it, then compare two or three side by side (time, degree, exam, patient contact, pace, setting, accreditor). The shortlist is saved in the visitor's browser.
-- **Already have a biology degree?**: faster routes such as post-bacc MLS, accelerated BSN, and imaging certificates
+- **Start from your degree**: pick your major (science, health science, public health, psychology/social work, pre-med, physics/engineering, or any other bachelor's) to see careers that fit that background, plus faster routes such as post-bacc MLS, accelerated BSN, and imaging certificates. Edit the `DEGREES` list in `js/app.js` to change these.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
 - **How to choose**: four questions to ask before applying to any program
 - **Resources**: centralized application services, accreditors, and outlook data
@@ -45,7 +45,11 @@ This repo is ready for Cloudflare Workers (static assets). `wrangler.jsonc` tell
 1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick `saimacyto/Career-website-`.
 2. Leave **Build command** empty. **Deploy command**: `npx wrangler deploy`. **Root directory**: `/`.
 3. Make sure the Worker name in Cloudflare matches `"name"` in `wrangler.jsonc` (currently `career-website`). If Cloudflare shows a different name, change one so they match.
-4. Deploy. The site appears at `https://career-website.<your-subdomain>.workers.dev`, and every push to `main` redeploys it.
+4. Deploy. The site appears at https://healthcaretracks.com (and https://career-website.saimacyto.workers.dev), and every push to `main` redeploys it.
+
+### Custom domain
+
+`wrangler.jsonc` connects `healthcaretracks.com` and `www.healthcaretracks.com` to the Worker through `routes` with `custom_domain: true`. Cloudflare creates the DNS records and SSL certificate automatically on deploy. This only works because the domain is in the same Cloudflare account. If a deploy fails saying a DNS record already exists for the hostname, delete that A/AAAA/CNAME record under **DNS → Records** for `healthcaretracks.com` and redeploy.
 
 If you use the older **Pages** flow instead: framework preset **None**, build command empty, **Build output directory** `/`.
 
@@ -64,12 +68,12 @@ At the top of `js/app.js`:
 ```js
 const SITE = {
   channelUrl: "",   // e.g. "https://www.youtube.com/@yourchannel"
-  baseUrl: "https://saimacyto.github.io/Career-website-/"
+  baseUrl: ""
 };
 ```
 
 - `channelUrl` shows the **Watch on YouTube** button. It's hidden until you fill it in.
-- `baseUrl` makes the "Link to this career" text show your real site address.
+- `baseUrl` can stay empty: "Link to this career" then uses whatever address the visitor opened (your Cloudflare URL, GitHub Pages, or a custom domain). Set it only if you want every shared link to point at one specific address.
 
 ## Link an episode to a career
 
@@ -87,11 +91,11 @@ Every career has its own shareable link for video descriptions:
 
 | Career | Link |
 |---|---|
-| Medical Laboratory Scientist | https://saimacyto.github.io/Career-website-/#career-mls |
-| Physical Therapist | https://saimacyto.github.io/Career-website-/#career-pt |
-| Occupational Therapist | https://saimacyto.github.io/Career-website-/#career-ot |
-| Physician Assistant | https://saimacyto.github.io/Career-website-/#career-pa |
-| Cytotechnologist | https://saimacyto.github.io/Career-website-/#career-cytotech |
+| Medical Laboratory Scientist | https://healthcaretracks.com/#career-mls |
+| Physical Therapist | https://healthcaretracks.com/#career-pt |
+| Occupational Therapist | https://healthcaretracks.com/#career-ot |
+| Physician Assistant | https://healthcaretracks.com/#career-pa |
+| Cytotechnologist | https://healthcaretracks.com/#career-cytotech |
 
 The pattern is always `#career-<id>`, using the `id` in `careers.js`.
 
