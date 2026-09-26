@@ -4,7 +4,7 @@ A free, interactive website that helps biology students and graduates in the US 
 
 Companion site for the **Smart Simplicity System** video series.
 
-**Live site:** https://saimacyto.github.io/Career-website-/
+**Live site:** https://career-website.saimacyto.workers.dev/ (Cloudflare)
 
 ## What's on the site
 
@@ -45,7 +45,7 @@ This repo is ready for Cloudflare Workers (static assets). `wrangler.jsonc` tell
 1. In the Cloudflare dashboard, go to **Workers & Pages → Create → Import a repository** and pick `saimacyto/Career-website-`.
 2. Leave **Build command** empty. **Deploy command**: `npx wrangler deploy`. **Root directory**: `/`.
 3. Make sure the Worker name in Cloudflare matches `"name"` in `wrangler.jsonc` (currently `career-website`). If Cloudflare shows a different name, change one so they match.
-4. Deploy. The site appears at `https://career-website.<your-subdomain>.workers.dev`, and every push to `main` redeploys it.
+4. Deploy. The site appears at https://career-website.saimacyto.workers.dev, and every push to `main` redeploys it.
 
 If you use the older **Pages** flow instead: framework preset **None**, build command empty, **Build output directory** `/`.
 
@@ -64,12 +64,12 @@ At the top of `js/app.js`:
 ```js
 const SITE = {
   channelUrl: "",   // e.g. "https://www.youtube.com/@yourchannel"
-  baseUrl: "https://saimacyto.github.io/Career-website-/"
+  baseUrl: ""
 };
 ```
 
 - `channelUrl` shows the **Watch on YouTube** button. It's hidden until you fill it in.
-- `baseUrl` makes the "Link to this career" text show your real site address.
+- `baseUrl` can stay empty: "Link to this career" then uses whatever address the visitor opened (your Cloudflare URL, GitHub Pages, or a custom domain). Set it only if you want every shared link to point at one specific address.
 
 ## Link an episode to a career
 
@@ -87,11 +87,11 @@ Every career has its own shareable link for video descriptions:
 
 | Career | Link |
 |---|---|
-| Medical Laboratory Scientist | https://saimacyto.github.io/Career-website-/#career-mls |
-| Physical Therapist | https://saimacyto.github.io/Career-website-/#career-pt |
-| Occupational Therapist | https://saimacyto.github.io/Career-website-/#career-ot |
-| Physician Assistant | https://saimacyto.github.io/Career-website-/#career-pa |
-| Cytotechnologist | https://saimacyto.github.io/Career-website-/#career-cytotech |
+| Medical Laboratory Scientist | https://career-website.saimacyto.workers.dev/#career-mls |
+| Physical Therapist | https://career-website.saimacyto.workers.dev/#career-pt |
+| Occupational Therapist | https://career-website.saimacyto.workers.dev/#career-ot |
+| Physician Assistant | https://career-website.saimacyto.workers.dev/#career-pa |
+| Cytotechnologist | https://career-website.saimacyto.workers.dev/#career-cytotech |
 
 The pattern is always `#career-<id>`, using the `id` in `careers.js`.
 

@@ -3,7 +3,7 @@
 /* ---- Site settings: edit these two lines ---- */
 const SITE = {
   channelUrl: "",   // e.g. "https://www.youtube.com/@yourchannel" — shows the "Watch on YouTube" button
-  baseUrl: "https://saimacyto.github.io/Career-website-/"   // your live site address, used for shareable career links
+  baseUrl: ""   // leave empty to use whatever address the site is opened on (Cloudflare, GitHub Pages, or a custom domain)
 };
 
 (function () {
