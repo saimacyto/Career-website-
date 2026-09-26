@@ -13,6 +13,8 @@ Companion site for the **Smart Simplicity System** video series.
 - **Shortlist and compare**: tap ♡ on any career to save it, then compare two or three side by side (time, degree, exam, patient contact, pace, setting, accreditor). The shortlist is saved in the visitor's browser.
 - **Start from your degree**: pick your major (science, health science, public health, psychology/social work, pre-med, physics/engineering, or any other bachelor's) to see careers that fit that background, plus faster routes such as post-bacc MLS, accelerated BSN, and imaging certificates. Edit the `DEGREES` list in `js/app.js` to change these.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
+- **What you'll get**: six benefit cards and a three-step "how it works" strip near the top
+- **About Saima**: founder photo, bio, credentials, and the story behind Healthcare Tracks
 - **How to choose**: four questions to ask before applying to any program
 - **Resources**: centralized application services, accreditors, and outlook data
 - Light and dark mode toggle, mobile menu, and shareable links for every career
@@ -22,6 +24,7 @@ No frameworks, no build step. Plain HTML, CSS, and JavaScript.
 ```
 index.html        page structure
 favicon.svg       browser tab icon
+img/              Saima's photo (saima-ahmad.webp/.jpg) and hero avatar
 css/styles.css    all styling (light and dark mode, animations)
 js/careers.js     career content: edit this to add or change careers
 js/app.js         site behavior, plus SITE settings at the top
