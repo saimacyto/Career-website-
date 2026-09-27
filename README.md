@@ -1,6 +1,6 @@
 # Healthcare Tracks
 
-A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 29 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, audiology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, healthcare administration, dietetics, and research/industry roles.
+A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 48 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, audiology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, healthcare administration, dietetics, nurse practitioners, dental hygiene, radiation therapy and dosimetry, optometry, podiatry, quick-start roles such as phlebotomy, EMT, and LPN, and research/industry roles.
 
 Companion site for the **Smart Simplicity System** video series.
 
