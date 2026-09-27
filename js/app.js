@@ -25,13 +25,88 @@ const SITE = {
     cardiotech: "Cardiovascular tech", surgtech: "Surgical tech", optometrist: "Optometrist", podiatrist: "Podiatrist",
     emt: "EMT / Paramedic", lpn: "LPN / LVN", medassistant: "Medical assistant", pharmtech: "Pharmacy tech",
     phlebotomist: "Phlebotomist", chiropractor: "Chiropractor", orthopros: "Orthotist / Prosthetist", exphys: "Exercise physiologist",
-    rectherapist: "Recreational therapist", hit: "Health info tech", ohs: "Health & safety"
+    rectherapist: "Recreational therapist", hit: "Health info tech", ohs: "Health & safety", labmanager: "Lab manager"
   };
 
   const $ = sel => document.querySelector(sel);
   const $$ = sel => Array.from(document.querySelectorAll(sel));
   const esc = s => String(s).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
-  const yrsShort = c => (c.years >= 11 ? "11+ yrs" : c.years + " yrs");
+  const yrsShort = c => (c.years >= 11 ? "11+ yrs" : c.years === 1 ? "1 yr" : c.years + " yrs");
+
+  /* ---------------- smart search (top search, Explore, Salary) ----------------
+     Topic words return a fixed, hand-picked list, so "lab" shows clinical lab
+     careers only instead of every career that mentions a lab. */
+  const TOPICS = [
+    { label: "Lab", words: ["lab", "labs", "laboratory", "laboratories", "medical lab", "clinical lab", "pathology"], ids: ["mls", "mlt", "cytotech", "histotech", "phlebotomist", "labmanager"] },
+    { label: "Imaging", words: ["imaging", "radiology", "xray", "x ray", "ultrasound", "radiation", "mri"], ids: ["radtech", "sonography", "nucmed", "radtherapist", "dosimetrist", "cardiotech"] },
+    { label: "Nursing", words: ["nursing", "nurse", "nurses"], ids: ["rn", "lpn", "aprn"] },
+    { label: "Therapy", words: ["therapy", "therapist", "therapists", "rehab", "rehabilitation"], ids: ["pt", "pta", "ot", "ota", "slp", "audiologist", "rt", "rectherapist", "exphys", "at", "chiropractor"] },
+    { label: "Dental", words: ["dental", "dentistry", "teeth"], ids: ["dentist", "hygienist"] },
+    { label: "Pharmacy", words: ["pharmacy", "medication", "medications"], ids: ["pharmacist", "pharmtech"] },
+    { label: "Admin", words: ["admin", "administration", "administrator", "management", "manager", "leadership", "supervisor"], ids: ["healthadmin", "labmanager", "hit"] },
+    { label: "Quick start", words: ["quick start", "quick", "certificate", "entry level"], ids: ["phlebotomist", "emt", "medassistant", "pharmtech", "lpn", "surgtech"] },
+    { label: "Research", words: ["research", "science", "data"], ids: ["researchtech", "crc", "regulatory", "bioinformatics", "medscientist", "hit"] }
+  ];
+  /* Other names people type for a career (searched like the title). */
+  const ALIASES = {
+    mls: "medical technologist med tech clinical laboratory scientist cls mt medical lab scientist",
+    mlt: "medical lab technician clinical laboratory technician",
+    cytotech: "cytology cytotechnology cytotechnologist pap",
+    histotech: "histology histotechnology histotechnologist histotechnician tissue",
+    phlebotomist: "phlebotomy blood draw venipuncture",
+    labmanager: "lab director lab supervisor laboratory administration lab administration lab leadership",
+    radtech: "radiography xray x ray mri technologist",
+    sonography: "ultrasound sonographer",
+    rn: "nursing nurse bsn adn",
+    lpn: "lvn practical nurse vocational nurse",
+    aprn: "np nurse practitioner crna nurse anesthetist midwife",
+    pa: "pa physician assistant physician associate",
+    pt: "pt physio physiotherapy physical therapy dpt",
+    ot: "ot occupational therapy",
+    slp: "speech therapy speech pathology",
+    rt: "respiratory therapy",
+    mph: "public health epidemiology epidemiologist",
+    healthadmin: "healthcare administration health administration hospital administrator mha",
+    hit: "health information medical records coding registrar",
+    gc: "genetics genetic counseling",
+    pharmtech: "pharmacy technician",
+    emt: "paramedic ems ambulance"
+  };
+  const norm = s => String(s).toLowerCase().replace(/[^a-z0-9+ ]+/g, " ").replace(/\s+/g, " ").trim();
+  const hasWord = (text, w) => (" " + text + " ").includes(" " + w + " ");
+  const has = (text, w) => (w.length <= 3 ? hasWord(text, w) : text.includes(w));
+  function searchCareers(query) {
+    const q = norm(query);
+    if (!q) return careers.slice();
+    const padded = " " + q + " ";
+    const hit = TOPICS.filter(t => t.words.some(w => padded.includes(" " + w + " ")));
+    let topicIds = null;
+    if (hit.length) {
+      const sets = hit.map(t => new Set(t.ids));
+      const both = hit[0].ids.filter(id => sets.every(st => st.has(id)));
+      topicIds = new Set(both.length ? both : hit.flatMap(t => t.ids));
+    }
+    const words = q.split(" ");
+    const order = hit.length ? hit.flatMap(t => t.ids) : [];
+    const scored = careers.map(c => {
+      const title = norm([c.name, SHORT[c.id] || "", c.credential, ALIASES[c.id] || ""].join(" "));
+      const body = norm([c.tagline, c.day, c.degree, c.exam, CATS[c.cat].label, c.tags.join(" ")].join(" "));
+      let score = 0;
+      if (has(title, q)) score += 20;
+      words.forEach(w => { if (has(title, w)) score += 5; });
+      if (topicIds) {
+        if (topicIds.has(c.id)) score += 30;
+        else if (!has(title, q)) return null;   // topic search: stay on topic
+      } else if (!words.every(w => has(title, w) || has(body, w))) {
+        return null;
+      }
+      return { c, score };
+    }).filter(Boolean);
+    const pos = c => { const i = order.indexOf(c.id); return i === -1 ? 999 : i; };
+    const topicWord = w => TOPICS.some(t => t.words.some(tw => tw.split(" ").includes(w)));
+    const pureTopic = hit.length && words.every(topicWord);   // e.g. "lab": keep the hand-picked order
+    return scored.sort((a, b) => (pureTopic ? pos(a.c) - pos(b.c) : 0) || b.score - a.score || pos(a.c) - pos(b.c) || a.c.name.localeCompare(b.c.name)).map(r => r.c);
+  }
 
   /* Small, safe wrappers: storage can be blocked (private mode, embeds). */
   const store = {
@@ -237,7 +312,11 @@ const SITE = {
     const b = e.target.closest("[data-filter]");
     if (b) setCat(b.dataset.filter);
   });
-  $("#search").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); renderGrid(); });
+  $("#search").addEventListener("input", e => {
+    state.q = e.target.value.trim().toLowerCase();
+    searchHits = new Set(searchCareers(state.q).map(c => c.id));
+    renderGrid();
+  });
   $("#sort").addEventListener("change", e => { state.sort = e.target.value; renderGrid(); });
 
   const range = $("#max-years");
@@ -259,9 +338,9 @@ const SITE = {
     if (state.cat !== "all" && c.cat !== state.cat) return false;
     if (state.maxYears < 12 && c.years > state.maxYears) return false;
     if (!state.q) return true;
-    const hay = [c.name, c.credential, c.tagline, c.day, c.degree, c.exam, SHORT[c.id], CATS[c.cat].label, ...c.tags].join(" ").toLowerCase();
-    return state.q.split(/\s+/).every(w => hay.includes(w));
+    return searchHits.has(c.id);
   }
+  let searchHits = new Set();
 
   function card(c, i) {
     return `<article class="card" data-cat="${c.cat}" style="--i:${i}">
@@ -487,7 +566,7 @@ const SITE = {
   $("#compare-btn").addEventListener("click", openCompare);
 
   /* ---------------- salary ---------------- */
-  const BLS_CLOSEST = { crc: true, regulatory: true, bioinformatics: true, mph: true };
+  const BLS_CLOSEST = { crc: true, regulatory: true, bioinformatics: true, mph: true, labmanager: true };
   const blsLabel = c => {
     const slug = c.bls.split("/").pop().replace(".htm", "").replace(/-/g, " ");
     const name = slug.charAt(0).toUpperCase() + slug.slice(1);
@@ -498,8 +577,7 @@ const SITE = {
   const stateUrl = c => "https://www.careeronestop.org/Toolkit/Wages/find-salary.aspx?keyword=" + encodeURIComponent(c.name.split(" / ")[0]) + "&location=United%20States";
   function renderSalary() {
     const q = ($("#salary-search").value || "").trim().toLowerCase();
-    const list = careers
-      .filter(c => !q || [c.name, SHORT[c.id], CATS[c.cat].label, c.credential].join(" ").toLowerCase().includes(q))
+    const list = searchCareers(q)
       .sort((a, b) => CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat) || a.name.localeCompare(b.name));
     $("#salary-list").innerHTML = list.length ? list.map(c => `
       <div class="sal-row" data-cat="${c.cat}">
@@ -519,7 +597,7 @@ const SITE = {
   const DEGREES = [
     { key: "science", label: "Biology, chemistry, or biochemistry",
       note: "You likely have most science prerequisites already. Lab careers can take you in with one extra year, and PA, pharmacy, and medicine build directly on your coursework.",
-      ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "optometrist", "podiatrist", "dentist", "physician"] },
+      ids: ["mls", "cytotech", "labmanager", "researchtech", "pa", "pharmacist", "gc", "optometrist", "podiatrist", "dentist", "physician"] },
     { key: "health", label: "Health science, kinesiology, or exercise science",
       note: "A common launch pad for rehab careers. Compare your transcript with each program's prerequisites; chemistry and physics are the usual gaps.",
       ids: ["pt", "ot", "at", "exphys", "orthopros", "chiropractor", "pa", "rn", "sonography", "audiologist", "healthadmin", "crc"] },
@@ -699,6 +777,41 @@ const SITE = {
   });
   $("#accred").innerHTML = [...seen].map(([n, v]) =>
     `<li><a href="${v.url}" target="_blank" rel="noopener">${esc(n)}</a><small>${esc(v.fields.join(", "))}</small></li>`).join("");
+
+  /* ---------------- top-bar quick search ---------------- */
+  const sdlg = $("#search-dlg"), sInput = $("#q-input");
+  $("#q-topics").innerHTML = TOPICS.map(t => `<button type="button" class="chip" data-topic="${esc(t.words[0])}">${esc(t.label)}</button>`).join("");
+  function renderQuick() {
+    const q = sInput.value;
+    const list = q.trim() ? searchCareers(q) : [];
+    $("#q-count").textContent = q.trim() ? `${list.length} ${list.length === 1 ? "career" : "careers"}` : "Type a career, a degree word, or tap a topic";
+    $("#q-results").innerHTML = list.map((c, i) => `
+      <li><button type="button" class="q-item" data-open="${c.id}" data-cat="${c.cat}" ${i === 0 ? 'aria-current="true"' : ""}>
+        <span class="q-dot" aria-hidden="true"></span>
+        <span class="q-main"><strong>${esc(c.name)}</strong><span>${esc(c.tagline)}</span></span>
+        <span class="q-meta">${esc(yrsShort(c))}${c.pay ? " · " + esc(c.pay) : ""}</span>
+      </button></li>`).join("") || (q.trim() ? `<li class="q-empty">No careers match “${esc(q)}”. Try lab, nursing, imaging, or therapy.</li>` : "");
+  }
+  function openSearch(initial) {
+    if (typeof initial === "string") sInput.value = initial;
+    renderQuick();
+    if (!sdlg.open) sdlg.showModal();
+    sInput.focus(); sInput.select();
+  }
+  $("#search-btn").addEventListener("click", () => openSearch());
+  sInput.addEventListener("input", renderQuick);
+  sInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") { const first = $("#q-results [data-open]"); if (first) first.click(); }
+  });
+  sdlg.addEventListener("click", e => {
+    const t = e.target.closest("[data-topic]");
+    if (t) { sInput.value = t.dataset.topic; renderQuick(); sInput.focus(); return; }
+    if (e.target === sdlg || e.target.closest("[data-close]") || e.target.closest("[data-open]")) sdlg.close();
+  });
+  document.addEventListener("keydown", e => {
+    const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+    if (e.key === "/" && !typing && !document.querySelector("dialog[open]")) { e.preventDefault(); openSearch(""); }
+  });
 
   /* ---------------- channel link ---------------- */
   if (SITE.channelUrl) { const a = $("#channel-link"); a.href = SITE.channelUrl; a.hidden = false; }
