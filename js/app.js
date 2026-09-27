@@ -16,11 +16,16 @@ const SITE = {
   const SHORT = {
     mls: "MLS", mlt: "MLT", cytotech: "Cytotech", histotech: "Histotech", radtech: "Rad tech",
     sonography: "Sonographer", nucmed: "Nuc med", pt: "Physical therapist", pta: "PT assistant",
-    ot: "Occupational therapist", ota: "OT assistant", slp: "Speech pathologist", rt: "Respiratory therapist",
+    ot: "Occupational therapist", ota: "OT assistant", slp: "Speech pathologist", audiologist: "Audiologist", rt: "Respiratory therapist",
     at: "Athletic trainer", pa: "PA", rn: "Nurse (RN)", pharmacist: "Pharmacist", dentist: "Dentist",
     physician: "Physician", gc: "Genetic counselor", mph: "Public health", dietitian: "Dietitian",
     researchtech: "Research tech", crc: "Research coordinator", regulatory: "Regulatory", bioinformatics: "Bioinformatics",
-    medscientist: "PhD scientist", healthadmin: "Health admin"
+    medscientist: "PhD scientist", healthadmin: "Health admin",
+    aprn: "Nurse practitioner / CRNA", hygienist: "Dental hygienist", radtherapist: "Radiation therapist", dosimetrist: "Dosimetrist",
+    cardiotech: "Cardiovascular tech", surgtech: "Surgical tech", optometrist: "Optometrist", podiatrist: "Podiatrist",
+    emt: "EMT / Paramedic", lpn: "LPN / LVN", medassistant: "Medical assistant", pharmtech: "Pharmacy tech",
+    phlebotomist: "Phlebotomist", chiropractor: "Chiropractor", orthopros: "Orthotist / Prosthetist", exphys: "Exercise physiologist",
+    rectherapist: "Recreational therapist", hit: "Health info tech", ohs: "Health & safety"
   };
 
   const $ = sel => document.querySelector(sel);
@@ -126,7 +131,8 @@ const SITE = {
   /* ---------------- map: careers grouped by years of school ---------------- */
   const MAX_Y = 12;
   const BUCKETS = [
-    { max: 3, label: "About 2 years", sub: "Associate degree" },
+    { max: 1, label: "Under 2 years", sub: "Certificate or diploma" },
+    { max: 3, label: "2–3 years", sub: "Associate degree" },
     { max: 4, label: "About 4 years", sub: "Bachelor's degree" },
     { max: 6, label: "5–6 years", sub: "Master's degree" },
     { max: 9, label: "7–8 years", sub: "Doctorate" },
@@ -146,7 +152,7 @@ const SITE = {
         const list = inCell(k, bi);
         return `<div class="m-cell" data-cat="${k}" data-empty="${!list.length}"><span class="m-cell-label">${bk.label}</span>${list.map(c => pill(c, n++)).join("")}</div>`;
       }).join("")).join("");
-    $("#ruler").innerHTML = `<div class="m-grid">${head}${rows}</div>`;
+    $("#ruler").innerHTML = `<div class="m-grid" style="--cols:${BUCKETS.length}">${head}${rows}</div>`;
 
     /* phone layout: one block per length of training */
     n = 0;
@@ -335,6 +341,14 @@ const SITE = {
     const prev = byId[order[(i - 1 + order.length) % order.length]];
     const next = byId[order[(i + 1) % order.length]];
 
+    const careerVideo = c.careerVideo ? `
+      <div class="d-sec"><h3>Official career video</h3>
+        <button type="button" class="yt-facade" data-yt="${esc(c.careerVideo)}" aria-label="Play the ${esc(c.name)} career video">
+          <img src="https://i.ytimg.com/vi/${esc(c.careerVideo)}/hqdefault.jpg" alt="" loading="lazy">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48"><path d="M66.5 7.7A8.5 8.5 0 0 0 60.5 1.7C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4A8.5 8.5 0 0 0 1.5 7.7C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+        </button>
+        <p class="fine">Video from CareerOneStop, sponsored by the U.S. Department of Labor. It plays from YouTube when you press play.</p>
+      </div>` : "";
     const video = c.video
       ? `<div class="video-box"><p><strong>Watch the episode</strong> on this career.</p><a class="btn btn-primary" href="${esc(c.video)}" target="_blank" rel="noopener">Play video</a></div>`
       : `<div class="video-box"><p><strong>Video episode coming soon.</strong> This career is on the series list.</p></div>`;
@@ -373,6 +387,7 @@ const SITE = {
       ${applyBlock(c)}
       <div class="d-sec" data-cat="${c.cat}"><h3>Links</h3>
         <div class="links">${links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div></div>
+      ${careerVideo}
       ${video}
       <div class="share"><span>Link to this career:</span><code id="share-url">${esc(shareUrl(c.id))}</code>
         <button type="button" id="copy-link">Copy</button></div>
@@ -416,6 +431,18 @@ const SITE = {
   });
 
   document.addEventListener("click", e => {
+    const yt = e.target.closest("[data-yt]");
+    if (yt) {
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(yt.dataset.yt) + "?autoplay=1&rel=0";
+      f.title = yt.getAttribute("aria-label").replace("Play the ", "");
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allowFullscreen = true;
+      f.className = "yt-frame";
+      yt.replaceWith(f);
+      return;
+    }
     const s = e.target.closest("[data-save]");
     if (s) { e.preventDefault(); toggleSave(s.dataset.save); return; }
     const t = e.target.closest("[data-open]");
@@ -466,6 +493,7 @@ const SITE = {
     const name = slug.charAt(0).toUpperCase() + slug.slice(1);
     return BLS_CLOSEST[c.id] ? `${name} (closest BLS match)` : name;
   };
+  const PAY_YEAR = "May 2025";
   const payUrl = c => c.bls + "#tab-5";
   const stateUrl = c => "https://www.careeronestop.org/Toolkit/Wages/find-salary.aspx?keyword=" + encodeURIComponent(c.name.split(" / ")[0]) + "&location=United%20States";
   function renderSalary() {
@@ -477,7 +505,7 @@ const SITE = {
       <div class="sal-row" data-cat="${c.cat}">
         <div class="sal-name"><button type="button" data-open="${c.id}">${esc(c.name)}</button>
           <span class="fine">${esc(blsLabel(c))}</span></div>
-        <div class="sal-pay">${c.pay ? `<strong>${esc(c.pay)}</strong><span class="fine">median pay</span>` : `<span class="fine">${esc(c.degree)} · ${yrsShort(c)}</span>`}</div>
+        <div class="sal-pay">${c.pay ? `<strong>${esc(c.pay)}</strong><span class="fine">median pay (BLS, ${PAY_YEAR})</span>` : `<span class="fine">${esc(c.degree)} · ${yrsShort(c)}</span>`}</div>
         <div class="sal-links">
           <a class="btn btn-primary btn-sm" href="${esc(payUrl(c))}" target="_blank" rel="noopener">Salary range ↗</a>
           <a class="btn btn-ghost btn-sm" href="${esc(stateUrl(c))}" target="_blank" rel="noopener">By state ↗</a>
@@ -491,25 +519,25 @@ const SITE = {
   const DEGREES = [
     { key: "science", label: "Biology, chemistry, or biochemistry",
       note: "You likely have most science prerequisites already. Lab careers can take you in with one extra year, and PA, pharmacy, and medicine build directly on your coursework.",
-      ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "physician", "dentist"] },
+      ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "optometrist", "podiatrist", "dentist", "physician"] },
     { key: "health", label: "Health science, kinesiology, or exercise science",
       note: "A common launch pad for rehab careers. Compare your transcript with each program's prerequisites; chemistry and physics are the usual gaps.",
-      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "healthadmin", "crc"] },
+      ids: ["pt", "ot", "at", "exphys", "orthopros", "chiropractor", "pa", "rn", "sonography", "audiologist", "healthadmin", "crc"] },
     { key: "publichealth", label: "Public health or health administration",
       note: "A natural fit for population health, research, and program roles. Add science prerequisites and clinical programs open up too.",
-      ids: ["mph", "healthadmin", "crc", "rn", "dietitian", "gc"] },
+      ids: ["mph", "healthadmin", "ohs", "hit", "crc", "rn", "dietitian", "gc"] },
     { key: "people", label: "Psychology, social work, or sociology",
       note: "Listening and counseling skills matter most in therapy and counseling careers. Plan on adding biology, anatomy, and statistics prerequisites.",
-      ids: ["ot", "slp", "gc", "rn", "mph", "healthadmin", "crc"] },
+      ids: ["ot", "slp", "audiologist", "rectherapist", "gc", "rn", "mph", "healthadmin", "crc"] },
     { key: "premed", label: "Pre-med (not going, or not yet)",
       note: "Your coursework transfers to many other clinical paths, several with shorter training and less debt than medical school.",
-      ids: ["pa", "mls", "gc", "pharmacist", "dentist", "rn", "crc"] },
+      ids: ["pa", "aprn", "mls", "gc", "pharmacist", "optometrist", "podiatrist", "dentist", "rn", "crc"] },
     { key: "quant", label: "Physics, math, engineering, or computer science",
       note: "Imaging and data-heavy roles value quantitative skills. Imaging programs usually still ask for anatomy and physiology.",
-      ids: ["bioinformatics", "nucmed", "radtech", "sonography", "researchtech"] },
+      ids: ["dosimetrist", "bioinformatics", "radtherapist", "nucmed", "radtech", "sonography", "ohs", "researchtech"] },
     { key: "other", label: "Any other bachelor's",
       note: "Business, English, education, and every other major count. Many graduate health programs accept any degree once prerequisites are done, and accelerated nursing is built for second-degree students.",
-      ids: ["rn", "ot", "slp", "pa", "mph", "healthadmin", "crc"] }
+      ids: ["rn", "ot", "slp", "pa", "mph", "healthadmin", "hit", "crc"] }
   ];
   let degreeKey = DEGREES[0].key;
   function renderDegree() {
@@ -537,6 +565,7 @@ const SITE = {
     { time: "12–24 months", title: "Cytotechnology program", text: "Certificate or master's programs for science graduates who like microscope diagnosis.", ids: ["cytotech"] },
     { time: "12–18 months", title: "Accelerated BSN", text: "Second-degree nursing programs build on your first bachelor's, then the NCLEX-RN.", ids: ["rn"] },
     { time: "12–18 months", title: "Imaging certificates", text: "Sonography and nuclear medicine offer certificate tracks for people who already hold a degree.", ids: ["sonography", "nucmed"] },
+    { time: "Weeks to months", title: "Stepping-stone jobs", text: "Short certificates get you working in healthcare fast and build the patient-care hours that PA and other programs ask for.", ids: ["phlebotomist", "emt", "medassistant", "pharmtech"] },
     { time: "Start now", title: "Research and trials jobs", text: "Research tech and clinical research coordinator roles hire science and health graduates directly and pay while you decide.", ids: ["researchtech", "crc"] },
     { time: "2–3 years", title: "Graduate health programs", text: "Any major can apply once prerequisites are done. Add observation or patient-care hours and apply to PA, OT, PT, or genetic counseling.", ids: ["pa", "ot", "pt", "gc"] }
   ];

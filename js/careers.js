@@ -9,8 +9,12 @@
   cat:   lab | rehab | clinical | research
   years: typical years of school after high school (used for sorting,
          the pathway chart, and the quiz). yearsLabel is what readers see.
-  pay:   optional, e.g. "$61,890". Shown as median pay next to the salary links.
-         Copy it from the BLS page (Pay tab) and update it each year.
+  careerVideo: optional YouTube video ID for an official career video (for example
+         from CareerOneStop). From an embed code like
+         src="https://www.youtube.com/embed/B7Jm90Zen20", the ID is B7Jm90Zen20.
+  pay:   optional median pay, e.g. "$61,890", shown next to the salary links.
+         Current figures are BLS May 2025 medians from the Occupational Outlook
+         Handbook. Update them each year (see PAY_YEAR in js/app.js).
   tags:  used by the "Which path fits me?" quiz.
          patients | some-patients | behind       (patient contact)
          movement | lab | tech | data | talk     (what they enjoy)
@@ -44,6 +48,7 @@ window.CAREERS = [
       { label: "ASCLS (professional society)", url: "https://ascls.org" }
     ],
     bls: BLS + "healthcare/clinical-laboratory-technologists-and-technicians.htm",
+    pay: "$62,930",
     bioGrad: true,
     tags: ["behind", "lab", "fast", "hospital"],
     video: ""
@@ -69,6 +74,7 @@ window.CAREERS = [
       { label: "ASCP Board of Certification", url: "https://www.ascp.org/content/board-of-certification" }
     ],
     bls: BLS + "healthcare/clinical-laboratory-technologists-and-technicians.htm",
+    pay: "$62,930",
     tags: ["behind", "lab", "fast", "hospital"],
     video: ""
   },
@@ -94,6 +100,7 @@ window.CAREERS = [
       { label: "ASCP Board of Certification", url: "https://www.ascp.org/content/board-of-certification" }
     ],
     bls: BLS + "healthcare/clinical-laboratory-technologists-and-technicians.htm",
+    pay: "$62,930",
     bioGrad: true,
     tags: ["behind", "lab", "steady", "hospital"],
     video: ""
@@ -120,6 +127,7 @@ window.CAREERS = [
       { label: "ASCP Board of Certification", url: "https://www.ascp.org/content/board-of-certification" }
     ],
     bls: BLS + "healthcare/clinical-laboratory-technologists-and-technicians.htm",
+    pay: "$62,930",
     bioGrad: true,
     tags: ["behind", "lab", "steady", "hospital"],
     video: ""
@@ -147,6 +155,7 @@ window.CAREERS = [
       { label: "ASRT (professional society)", url: "https://www.asrt.org" }
     ],
     bls: BLS + "healthcare/radiologic-technologists.htm",
+    pay: "$81,390",
     tags: ["patients", "tech", "fast", "hospital"],
     video: ""
   },
@@ -172,6 +181,7 @@ window.CAREERS = [
       { label: "SDMS (professional society)", url: "https://www.sdms.org" }
     ],
     bls: BLS + "healthcare/diagnostic-medical-sonographers.htm",
+    pay: "$96,590",
     bioGrad: true,
     tags: ["patients", "tech", "steady", "hospital"],
     video: ""
@@ -198,6 +208,7 @@ window.CAREERS = [
       { label: "SNMMI (professional society)", url: "https://www.snmmi.org" }
     ],
     bls: BLS + "healthcare/nuclear-medicine-technologists.htm",
+    pay: "$101,370",
     bioGrad: true,
     tags: ["some-patients", "tech", "steady", "hospital"],
     video: ""
@@ -229,6 +240,7 @@ window.CAREERS = [
       { label: "FSBPT (NPTE exam)", url: "https://www.fsbpt.org" }
     ],
     bls: BLS + "healthcare/physical-therapists.htm",
+    pay: "$102,760",
     bioGrad: true,
     tags: ["patients", "movement", "steady", "community"],
     video: ""
@@ -254,6 +266,7 @@ window.CAREERS = [
       { label: "APTA (professional society)", url: "https://www.apta.org" }
     ],
     bls: BLS + "healthcare/physical-therapist-assistants-and-aides.htm",
+    pay: "$61,200",
     tags: ["patients", "movement", "steady", "community"],
     video: ""
   },
@@ -282,6 +295,7 @@ window.CAREERS = [
       { label: "NBCOT (exam)", url: "https://www.nbcot.org" }
     ],
     bls: BLS + "healthcare/occupational-therapists.htm",
+    pay: "$100,330",
     bioGrad: true,
     tags: ["patients", "talk", "steady", "community"],
     video: ""
@@ -307,7 +321,36 @@ window.CAREERS = [
       { label: "AOTA (professional society)", url: "https://www.aota.org" }
     ],
     bls: BLS + "healthcare/occupational-therapy-assistants-and-aides.htm",
+    pay: "$70,800",
     tags: ["patients", "talk", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "audiologist",
+    name: "Audiologist",
+    cat: "rehab",
+    credential: "AuD, CCC-A",
+    tagline: "Diagnoses and treats hearing loss and balance problems, from newborns to older adults.",
+    day: "You test hearing and balance with specialized equipment, fit and program hearing aids, support cochlear implant patients, and counsel families about hearing loss. Settings include clinics, hospitals, schools, and private practices.",
+    years: 8,
+    yearsLabel: "About 8 years (bachelor's plus a 4-year Doctor of Audiology)",
+    degree: "Doctorate (AuD)",
+    route: [
+      "Earn a bachelor's in any field; communication sciences and disorders is common, and science courses help",
+      "Complete a 4-year Doctor of Audiology (AuD) program accredited by the CAA (ASHA) or ACAEA, including a clinical externship",
+      "Pass the Praxis Examination in Audiology",
+      "Get a state license (required in every state); ASHA's CCC-A is optional but widely recognized"
+    ],
+    exam: "Praxis Examination in Audiology",
+    accreditor: { name: "CAA (ASHA)", url: "https://caa.asha.org" },
+    links: [
+      { label: "American Academy of Audiology", url: "https://www.audiology.org" },
+      { label: "CSDCAS (application)", url: "https://csdcas.liaisoncas.com" }
+    ],
+    bls: BLS + "healthcare/audiologists.htm",
+    pay: "$95,780",
+    tags: ["patients", "tech", "steady", "community"],
+    careerVideo: "B7Jm90Zen20",
     video: ""
   },
   {
@@ -334,6 +377,7 @@ window.CAREERS = [
       { label: "ASHA (professional society)", url: "https://www.asha.org" }
     ],
     bls: BLS + "healthcare/speech-language-pathologists.htm",
+    pay: "$97,870",
     bioGrad: true,
     tags: ["patients", "talk", "steady", "community"],
     video: ""
@@ -360,6 +404,7 @@ window.CAREERS = [
       { label: "AARC (professional society)", url: "https://www.aarc.org" }
     ],
     bls: BLS + "healthcare/respiratory-therapists.htm",
+    pay: "$82,280",
     tags: ["patients", "tech", "fast", "hospital"],
     video: ""
   },
@@ -386,6 +431,7 @@ window.CAREERS = [
       { label: "NATA (professional society)", url: "https://www.nata.org" }
     ],
     bls: BLS + "healthcare/athletic-trainers.htm",
+    pay: "$62,520",
     bioGrad: true,
     tags: ["patients", "movement", "fast", "community"],
     video: ""
@@ -417,6 +463,7 @@ window.CAREERS = [
       { label: "NCCPA (exam)", url: "https://www.nccpa.net" }
     ],
     bls: BLS + "healthcare/physician-assistants.htm",
+    pay: "$135,880",
     bioGrad: true,
     tags: ["patients", "talk", "fast", "hospital"],
     video: ""
@@ -445,6 +492,7 @@ window.CAREERS = [
       { label: "ACEN", url: "https://www.acenursing.org" }
     ],
     bls: BLS + "healthcare/registered-nurses.htm",
+    pay: "$97,550",
     bioGrad: true,
     tags: ["patients", "talk", "fast", "hospital"],
     video: ""
@@ -472,6 +520,7 @@ window.CAREERS = [
       { label: "AACP", url: "https://www.aacp.org" }
     ],
     bls: BLS + "healthcare/pharmacists.htm",
+    pay: "$140,910",
     bioGrad: true,
     tags: ["some-patients", "data", "steady", "community"],
     video: ""
@@ -500,6 +549,7 @@ window.CAREERS = [
       { label: "ADA (professional society)", url: "https://www.ada.org" }
     ],
     bls: BLS + "healthcare/dentists.htm",
+    pay: "$176,110",
     bioGrad: true,
     tags: ["patients", "movement", "steady", "community"],
     video: ""
@@ -528,6 +578,7 @@ window.CAREERS = [
       { label: "AACOM (DO applicants)", url: "https://www.aacom.org" }
     ],
     bls: BLS + "healthcare/physicians-and-surgeons.htm",
+    pay: "$275,930",
     bioGrad: true,
     tags: ["patients", "talk", "fast", "hospital"],
     video: ""
@@ -555,6 +606,7 @@ window.CAREERS = [
       { label: "ABGC (exam)", url: "https://www.abgc.net" }
     ],
     bls: BLS + "healthcare/genetic-counselors.htm",
+    pay: "$100,040",
     bioGrad: true,
     tags: ["some-patients", "talk", "steady", "hospital"],
     video: ""
@@ -634,6 +686,7 @@ window.CAREERS = [
       { label: "CDR (exam)", url: "https://www.cdrnet.org" }
     ],
     bls: BLS + "healthcare/dietitians-and-nutritionists.htm",
+    pay: "$76,400",
     bioGrad: true,
     tags: ["patients", "talk", "steady", "community"],
     video: ""
@@ -767,6 +820,497 @@ window.CAREERS = [
     bls: BLS + "life-physical-and-social-science/medical-scientists.htm",
     bioGrad: true,
     tags: ["behind", "lab", "steady", "industry"],
+    video: ""
+  },
+  /* ---------------- ADDED FROM THE BLS HEALTHCARE LIST ---------------- */
+  {
+    id: "aprn",
+    name: "Nurse Practitioner / Nurse Anesthetist / Nurse Midwife",
+    cat: "clinical",
+    credential: "APRN (NP, CRNA, CNM)",
+    tagline: "Advanced practice nurses who diagnose and prescribe, give anesthesia, or deliver babies.",
+    day: "Nurse practitioners examine patients, order tests, diagnose, and prescribe, often in primary care or a specialty. Nurse anesthetists give anesthesia for surgery and procedures. Nurse midwives care for patients through pregnancy, birth, and gynecologic care.",
+    years: 7,
+    yearsLabel: "6–8 years (BSN, RN experience, then a master's or doctorate)",
+    degree: "Master's or Doctorate (MSN, DNP)",
+    route: [
+      "Become a registered nurse; a BSN is usually required",
+      "Work as an RN; nurse anesthesia programs require critical care experience",
+      "Complete an accredited graduate program: nurse practitioner (MSN or DNP), nurse anesthesia (now doctoral), or nurse midwifery",
+      "Pass a national certification exam and get an APRN license in your state"
+    ],
+    exam: "National certification (for example AANP or ANCC for NPs, NBCRNA for CRNAs, AMCB for midwives)",
+    accreditor: { name: "CCNE / ACEN (NP)", url: "https://www.aacnnursing.org" },
+    links: [
+      { label: "AANP (nurse practitioners)", url: "https://www.aanp.org" },
+      { label: "AANA (nurse anesthesiology)", url: "https://www.aana.com" },
+      { label: "ACNM (nurse-midwives)", url: "https://www.midwife.org" }
+    ],
+    bls: BLS + "healthcare/nurse-anesthetists-nurse-midwives-and-nurse-practitioners.htm",
+    pay: "$134,920",
+    tags: ["patients", "talk", "fast", "hospital"],
+    video: ""
+  },
+  {
+    id: "hygienist",
+    name: "Dental Hygienist",
+    cat: "clinical",
+    credential: "RDH",
+    tagline: "Cleans teeth, screens for oral disease, and teaches patients to keep their mouths healthy.",
+    day: "You remove plaque and tartar, take x-rays, screen for gum disease and oral cancer, apply sealants and fluoride, and coach patients on home care. Most work in dental offices, often with flexible or part-time schedules.",
+    years: 3,
+    yearsLabel: "About 3 years (prerequisites plus an associate degree); bachelor's programs also exist",
+    degree: "Associate",
+    route: [
+      "Complete prerequisites, often anatomy, chemistry, and microbiology",
+      "Complete a CODA-accredited dental hygiene program",
+      "Pass the National Board Dental Hygiene Examination and a clinical exam",
+      "Get a state license"
+    ],
+    exam: "National Board Dental Hygiene Exam + clinical exam",
+    accreditor: { name: "CODA", url: "https://coda.ada.org" },
+    links: [
+      { label: "ADHA (professional society)", url: "https://www.adha.org" }
+    ],
+    bls: BLS + "healthcare/dental-hygienists.htm",
+    pay: "$98,100",
+    tags: ["patients", "talk", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "radtherapist",
+    name: "Radiation Therapist",
+    cat: "lab",
+    credential: "R.T.(T)(ARRT)",
+    tagline: "Delivers the radiation treatments that fight cancer.",
+    day: "You position patients, operate linear accelerators to deliver prescribed doses, check treatment accuracy, and support patients through weeks of treatment. Unlike most imaging roles, you get to know your patients well.",
+    years: 2,
+    yearsLabel: "2–4 years (associate or bachelor's); 12-month certificate for radiographers",
+    degree: "Associate or Bachelor's",
+    route: [
+      "Complete a JRCERT-accredited radiation therapy program: associate, bachelor's, or a certificate for registered radiographers",
+      "Pass the ARRT radiation therapy exam",
+      "Get a state license where required"
+    ],
+    exam: "ARRT Radiation Therapy exam",
+    accreditor: { name: "JRCERT", url: "https://www.jrcert.org" },
+    links: [
+      { label: "ARRT (certification)", url: "https://www.arrt.org" },
+      { label: "ASRT (professional society)", url: "https://www.asrt.org" }
+    ],
+    bls: BLS + "healthcare/radiation-therapists.htm",
+    pay: "$105,310",
+    tags: ["patients", "tech", "steady", "hospital"],
+    video: ""
+  },
+  {
+    id: "dosimetrist",
+    name: "Medical Dosimetrist",
+    cat: "lab",
+    credential: "CMD",
+    tagline: "Designs the radiation treatment plans used to treat cancer.",
+    day: "Working with radiation oncologists and medical physicists, you use planning software to calculate doses and shape radiation beams so tumors get what they need while healthy tissue is spared. Computer-based, math-heavy work with little direct patient contact.",
+    years: 5,
+    yearsLabel: "About 5 years (bachelor's plus a 12-month certificate, or a master's)",
+    degree: "Bachelor's + certificate, or Master's",
+    route: [
+      "Earn a bachelor's; physical science, math, and radiation therapy are common",
+      "Complete a JRCERT-accredited medical dosimetry program (certificate or master's)",
+      "Pass the MDCB certification exam (CMD)"
+    ],
+    exam: "MDCB certification exam (CMD)",
+    accreditor: { name: "JRCERT", url: "https://www.jrcert.org" },
+    links: [
+      { label: "AAMD (professional society)", url: "https://www.medicaldosimetry.org" },
+      { label: "MDCB (certification)", url: "https://www.mdcb.org" }
+    ],
+    bls: BLS + "healthcare/medical-dosimetrists.htm",
+    pay: "$147,470",
+    tags: ["behind", "data", "steady", "hospital"],
+    video: ""
+  },
+  {
+    id: "cardiotech",
+    name: "Cardiovascular Technologist",
+    cat: "lab",
+    credential: "RCS, RVT, RCIS",
+    tagline: "Runs heart and blood-vessel tests, from echocardiograms to the cardiac cath lab.",
+    day: "Depending on your specialty, you perform cardiac ultrasound (echocardiography) or vascular ultrasound, or assist physicians during cardiac catheterization. Many also run EKGs and stress tests.",
+    years: 2,
+    yearsLabel: "About 2 years (associate); certificate tracks for degree holders",
+    degree: "Associate",
+    route: [
+      "Complete a CAAHEP-accredited cardiovascular technology program (associate, bachelor's, or certificate)",
+      "Earn a credential from CCI or ARDMS, such as RCS, RVT, or RCIS"
+    ],
+    exam: "CCI or ARDMS credential exam",
+    accreditor: { name: "CAAHEP", url: "https://www.caahep.org" },
+    links: [
+      { label: "CCI (credentialing)", url: "https://www.cci-online.org" },
+      { label: "ARDMS (credentialing)", url: "https://www.ardms.org" }
+    ],
+    bls: BLS + "healthcare/cardiovascular-technologists-and-technicians.htm",
+    pay: "$74,310",
+    tags: ["patients", "tech", "fast", "hospital"],
+    video: ""
+  },
+  {
+    id: "surgtech",
+    name: "Surgical Technologist",
+    cat: "clinical",
+    credential: "CST",
+    tagline: "Prepares the operating room and hands surgeons the right instruments.",
+    day: "You sterilize and set up instruments and equipment, keep the sterile field intact, pass instruments during surgery, and count supplies. Surgical assistants, with more training, also help with tasks such as suturing.",
+    years: 1,
+    yearsLabel: "About 1–2 years (certificate or associate)",
+    degree: "Certificate or Associate",
+    route: [
+      "Complete a CAAHEP- or ABHES-accredited surgical technology program",
+      "Pass the NBSTSA exam to become a Certified Surgical Technologist (CST)",
+      "Some states require registration or certification"
+    ],
+    exam: "NBSTSA CST exam",
+    accreditor: { name: "CAAHEP", url: "https://www.caahep.org" },
+    links: [
+      { label: "AST (professional society)", url: "https://www.ast.org" },
+      { label: "NBSTSA (certification)", url: "https://www.nbstsa.org" }
+    ],
+    bls: BLS + "healthcare/surgical-technologists.htm",
+    pay: "$64,700",
+    tags: ["some-patients", "tech", "fast", "hospital"],
+    video: ""
+  },
+  {
+    id: "optometrist",
+    name: "Optometrist",
+    cat: "clinical",
+    credential: "OD",
+    tagline: "Examines eyes, prescribes glasses and contacts, and treats eye disease.",
+    day: "You perform eye exams, test vision, prescribe corrective lenses, and diagnose and manage conditions such as glaucoma, dry eye, and diabetic eye disease, referring patients to ophthalmologists for surgery.",
+    years: 8,
+    yearsLabel: "About 8 years (bachelor's plus a 4-year Doctor of Optometry)",
+    degree: "Doctorate (OD)",
+    route: [
+      "Complete a bachelor's with prerequisites such as biology, chemistry, and physics",
+      "Take the Optometry Admission Test (OAT) and apply through OptomCAS",
+      "Complete a 4-year accredited Doctor of Optometry program",
+      "Pass the NBEO exams and get a state license"
+    ],
+    exam: "NBEO exams",
+    accreditor: { name: "ACOE (via AOA)", url: "https://www.aoa.org" },
+    links: [
+      { label: "OptomCAS (application)", url: "https://optomcas.liaisoncas.com" },
+      { label: "ASCO (optometry schools)", url: "https://optometriceducation.org" }
+    ],
+    bls: BLS + "healthcare/optometrists.htm",
+    pay: "$136,570",
+    tags: ["patients", "tech", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "podiatrist",
+    name: "Podiatrist",
+    cat: "clinical",
+    credential: "DPM",
+    tagline: "Treats the foot, ankle, and lower leg, including surgery.",
+    day: "You diagnose and treat injuries, diabetic foot problems, deformities, and infections; prescribe medications and orthotics; and perform surgery. Many podiatrists run their own practices.",
+    years: 11,
+    yearsLabel: "About 11 years (bachelor's, 4-year DPM, and a 3-year residency)",
+    degree: "Doctorate (DPM) + residency",
+    route: [
+      "Complete a bachelor's with science prerequisites",
+      "Take the MCAT and apply through AACPMAS",
+      "Complete a 4-year Doctor of Podiatric Medicine program accredited by CPME",
+      "Complete a 3-year residency, pass the APMLE exams, and get a state license"
+    ],
+    exam: "APMLE exams",
+    accreditor: { name: "CPME", url: "https://www.cpme.org" },
+    links: [
+      { label: "AACPMAS (application)", url: "https://aacpmas.liaisoncas.com" },
+      { label: "APMA (professional society)", url: "https://www.apma.org" }
+    ],
+    bls: BLS + "healthcare/podiatrists.htm",
+    pay: "$160,300",
+    tags: ["patients", "movement", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "emt",
+    name: "EMT / Paramedic",
+    cat: "clinical",
+    credential: "EMT, NRP",
+    tagline: "Responds to emergencies and gives care on the way to the hospital.",
+    day: "EMTs assess patients, give basic life support, and transport them. Paramedics, with more training, also give medications, start IVs, and manage airways. Many future PAs and physicians start here to build patient-care hours.",
+    years: 1,
+    yearsLabel: "Weeks to months (EMT); about 1–2 years (paramedic)",
+    degree: "Certificate (paramedic: certificate or associate)",
+    route: [
+      "Complete a state-approved EMT course",
+      "Pass the NREMT exam and get state certification",
+      "Optional: a CAAHEP-accredited paramedic program and the NRP exam"
+    ],
+    exam: "NREMT exam",
+    accreditor: { name: "CAAHEP (paramedic)", url: "https://www.caahep.org" },
+    links: [
+      { label: "NREMT (certification)", url: "https://www.nremt.org" },
+      { label: "NAEMT (professional society)", url: "https://www.naemt.org" }
+    ],
+    bls: BLS + "healthcare/emts-and-paramedics.htm",
+    pay: "$48,150",
+    tags: ["patients", "tech", "fast", "community"],
+    video: ""
+  },
+  {
+    id: "lpn",
+    name: "Licensed Practical Nurse (LPN/LVN)",
+    cat: "clinical",
+    credential: "LPN, LVN",
+    tagline: "Provides basic nursing care, with a clear bridge to becoming an RN.",
+    day: "You check vital signs, give some medications, change dressings, help patients with daily care, and report changes to RNs and physicians. Many LPNs work in long-term care and home health, then bridge to RN.",
+    years: 1,
+    yearsLabel: "About 1 year (certificate or diploma)",
+    degree: "Certificate",
+    route: [
+      "Complete a state-approved practical nursing program (about a year)",
+      "Pass the NCLEX-PN and get a state license",
+      "Optional later: an LPN-to-RN bridge program"
+    ],
+    exam: "NCLEX-PN",
+    accreditor: { name: "ACEN / NLN CNEA", url: "https://www.acenursing.org" },
+    links: [
+      { label: "NCSBN (NCLEX)", url: "https://www.ncsbn.org" }
+    ],
+    bls: BLS + "healthcare/licensed-practical-and-licensed-vocational-nurses.htm",
+    pay: "$64,400",
+    tags: ["patients", "talk", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "medassistant",
+    name: "Medical Assistant",
+    cat: "clinical",
+    credential: "CMA, RMA",
+    tagline: "Handles clinical and front-desk tasks in clinics and doctors' offices.",
+    day: "You take vital signs and health histories, prepare patients for exams, give some injections, often draw blood, and schedule appointments and update records.",
+    years: 1,
+    yearsLabel: "About 1 year (certificate or diploma); associate programs exist",
+    degree: "Certificate",
+    route: [
+      "Complete a CAAHEP- or ABHES-accredited medical assisting program",
+      "Pass a certification exam such as the CMA (AAMA) or RMA (AMT)"
+    ],
+    exam: "CMA (AAMA) or RMA (AMT)",
+    accreditor: { name: "CAAHEP", url: "https://www.caahep.org" },
+    links: [
+      { label: "AAMA (certification)", url: "https://www.aama-ntl.org" }
+    ],
+    bls: BLS + "healthcare/medical-assistants.htm",
+    pay: "$45,690",
+    tags: ["patients", "talk", "fast", "community"],
+    video: ""
+  },
+  {
+    id: "pharmtech",
+    name: "Pharmacy Technician",
+    cat: "clinical",
+    credential: "CPhT",
+    tagline: "Helps pharmacists prepare and dispense medications.",
+    day: "You measure, count, and label medications, process prescriptions and insurance claims, manage inventory, and, in hospitals, may prepare IV medications under a pharmacist's supervision.",
+    years: 1,
+    yearsLabel: "Weeks to about a year (on-the-job training or a certificate)",
+    degree: "High school + training",
+    route: [
+      "Complete on-the-job training or an ASHP/ACPE-accredited program",
+      "Pass the PTCB (CPhT) or NHA (ExCPT) exam",
+      "Register or get licensed with your state board of pharmacy"
+    ],
+    exam: "PTCB CPhT or NHA ExCPT",
+    accreditor: { name: "ASHP / ACPE", url: "https://www.ashp.org" },
+    links: [
+      { label: "PTCB (certification)", url: "https://www.ptcb.org" }
+    ],
+    bls: BLS + "healthcare/pharmacy-technicians.htm",
+    pay: "$45,750",
+    tags: ["behind", "data", "fast", "community"],
+    video: ""
+  },
+  {
+    id: "phlebotomist",
+    name: "Phlebotomist",
+    cat: "lab",
+    credential: "PBT, CPT",
+    tagline: "Draws blood for tests, transfusions, and donations.",
+    day: "You identify patients, draw blood safely, label and process samples, and help nervous patients stay calm. Phlebotomists work in hospitals, labs, blood banks, and clinics, and many use it as a first step toward lab or nursing careers.",
+    years: 1,
+    yearsLabel: "A few weeks to a few months (certificate)",
+    degree: "Certificate",
+    route: [
+      "Complete a phlebotomy training program",
+      "Earn certification, for example from ASCP, NHA, or AMT",
+      "California, Louisiana, Nevada, and Washington require state certification"
+    ],
+    exam: "ASCP, NHA, or AMT certification",
+    accreditor: { name: "NAACLS", url: "https://www.naacls.org" },
+    links: [
+      { label: "ASCP Board of Certification", url: "https://www.ascp.org/content/board-of-certification" }
+    ],
+    bls: BLS + "healthcare/phlebotomists.htm",
+    pay: "$45,230",
+    tags: ["some-patients", "lab", "fast", "hospital"],
+    video: ""
+  },
+  {
+    id: "chiropractor",
+    name: "Chiropractor",
+    cat: "rehab",
+    credential: "DC",
+    tagline: "Treats back, neck, and joint problems with spinal adjustment and rehab.",
+    day: "You assess patients with musculoskeletal pain, perform spinal and joint adjustments, and recommend exercise and lifestyle changes. Most chiropractors work in private practice.",
+    years: 7,
+    yearsLabel: "About 7 years (undergraduate study, usually a bachelor's, plus a 4-year Doctor of Chiropractic)",
+    degree: "Doctorate (DC)",
+    route: [
+      "Complete undergraduate prerequisites; many programs require a bachelor's",
+      "Complete a 4-year CCE-accredited Doctor of Chiropractic program",
+      "Pass the NBCE exams and get a state license"
+    ],
+    exam: "NBCE exams",
+    accreditor: { name: "CCE", url: "https://www.cce-usa.org" },
+    links: [
+      { label: "ACA (professional society)", url: "https://www.acatoday.org" }
+    ],
+    bls: BLS + "healthcare/chiropractors.htm",
+    pay: "$79,200",
+    tags: ["patients", "movement", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "orthopros",
+    name: "Orthotist / Prosthetist",
+    cat: "rehab",
+    credential: "CO, CP, CPO",
+    tagline: "Designs and fits braces and artificial limbs.",
+    day: "You evaluate patients, take measurements and scans, design and fit orthoses (braces) and prostheses (artificial limbs), and adjust them over time. The work blends patient care with hands-on fabrication and technology.",
+    years: 6,
+    yearsLabel: "About 6 years (bachelor's plus a master's), then a residency",
+    degree: "Master's",
+    route: [
+      "Complete a bachelor's with prerequisites such as biology, physics, and anatomy",
+      "Complete an accredited master's in orthotics and prosthetics (apply through OPCAS)",
+      "Complete an NCOPE-accredited residency",
+      "Pass ABC certification exams; some states also require a license"
+    ],
+    exam: "ABC certification exams",
+    accreditor: { name: "CAAHEP (via NCOPE)", url: "https://www.caahep.org" },
+    links: [
+      { label: "NCOPE (education and residency)", url: "https://www.ncope.org" },
+      { label: "AAOP (professional society)", url: "https://www.oandp.org" }
+    ],
+    bls: BLS + "healthcare/orthotists-and-prosthetists.htm",
+    pay: "$81,110",
+    tags: ["patients", "tech", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "exphys",
+    name: "Exercise Physiologist",
+    cat: "rehab",
+    credential: "ACSM-EP, ACSM-CEP",
+    tagline: "Designs exercise programs that improve health, including cardiac rehab.",
+    day: "You assess fitness and health, design exercise programs, and supervise patients in settings such as cardiac and pulmonary rehabilitation, hospitals, and wellness programs.",
+    years: 4,
+    yearsLabel: "About 4 years (bachelor's)",
+    degree: "Bachelor's",
+    route: [
+      "Earn a bachelor's in exercise science, exercise physiology, or kinesiology",
+      "Gain clinical experience through internships",
+      "Earn ACSM certification (EP or clinical EP); a few states require a license"
+    ],
+    exam: "ACSM certification",
+    accreditor: { name: "CAAHEP", url: "https://www.caahep.org" },
+    links: [
+      { label: "ACSM (certification)", url: "https://www.acsm.org" }
+    ],
+    bls: BLS + "healthcare/exercise-physiologists.htm",
+    pay: "$59,460",
+    tags: ["some-patients", "movement", "steady", "hospital"],
+    video: ""
+  },
+  {
+    id: "rectherapist",
+    name: "Recreational Therapist",
+    cat: "rehab",
+    credential: "CTRS",
+    tagline: "Uses recreation, arts, and activities as treatment.",
+    day: "You plan therapeutic activities such as arts and crafts, sports, games, music, and community outings to help people recover from injury, manage mental health conditions, and build independence. Settings include hospitals, rehab centers, and long-term care.",
+    years: 4,
+    yearsLabel: "About 4 years (bachelor's)",
+    degree: "Bachelor's",
+    route: [
+      "Earn a bachelor's in recreational therapy (therapeutic recreation)",
+      "Complete a supervised internship",
+      "Pass the NCTRC exam to become a CTRS; a few states require a license"
+    ],
+    exam: "NCTRC exam (CTRS)",
+    accreditor: { name: "CAAHEP", url: "https://www.caahep.org" },
+    links: [
+      { label: "ATRA (professional society)", url: "https://www.atra-online.com" },
+      { label: "NCTRC (certification)", url: "https://www.nctrc.org" }
+    ],
+    bls: BLS + "healthcare/recreational-therapists.htm",
+    pay: "$61,960",
+    tags: ["patients", "talk", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "hit",
+    name: "Health Information Technologist",
+    cat: "research",
+    credential: "RHIT, RHIA, CTR",
+    tagline: "Manages health records and clinical data, including cancer registries.",
+    day: "You manage electronic health record data, keep it accurate, private, and compliant, code diagnoses for billing and research, and analyze clinical data. Medical registrars track patients with specific conditions, such as cancer.",
+    years: 2,
+    yearsLabel: "2–4 years (associate for RHIT, bachelor's for RHIA)",
+    degree: "Associate or Bachelor's",
+    route: [
+      "Complete a CAHIIM-accredited health information program (associate or bachelor's)",
+      "Pass the AHIMA RHIT (associate) or RHIA (bachelor's) exam",
+      "Optional: specialize, for example in cancer registry (CTR) or coding"
+    ],
+    exam: "AHIMA RHIT or RHIA",
+    accreditor: { name: "CAHIIM", url: "https://www.cahiim.org" },
+    links: [
+      { label: "AHIMA (professional society)", url: "https://www.ahima.org" }
+    ],
+    bls: BLS + "healthcare/health-information-technologists-and-medical-registrars.htm",
+    pay: "$68,020",
+    tags: ["behind", "data", "steady", "hospital"],
+    video: ""
+  },
+  {
+    id: "ohs",
+    name: "Occupational Health and Safety Specialist",
+    cat: "research",
+    credential: "CSP, CIH",
+    tagline: "Keeps workplaces, including hospitals, safe from hazards.",
+    day: "You inspect workplaces, measure hazards such as chemicals, noise, and infection risks, investigate incidents, and design safer procedures and training. Industrial hygienists focus on chemical and biological exposures.",
+    years: 4,
+    yearsLabel: "About 4 years (bachelor's)",
+    degree: "Bachelor's",
+    route: [
+      "Earn a bachelor's in occupational health and safety, industrial hygiene, or a science such as biology or chemistry",
+      "Gain experience; many roles include on-the-job training",
+      "Optional: certification as a CSP (BCSP) or CIH (BGC)"
+    ],
+    exam: "None required (CSP or CIH optional)",
+    accreditor: { name: "ABET", url: "https://www.abet.org" },
+    links: [
+      { label: "BCSP (safety certification)", url: "https://www.bcsp.org" },
+      { label: "AIHA (industrial hygiene)", url: "https://www.aiha.org" }
+    ],
+    bls: BLS + "healthcare/occupational-health-and-safety-specialists.htm",
+    pay: "$83,740",
+    tags: ["behind", "data", "steady", "industry"],
     video: ""
   }
 ];

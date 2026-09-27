@@ -1,6 +1,6 @@
 # Healthcare Tracks
 
-A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 28 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, healthcare administration, dietetics, and research/industry roles.
+A free, interactive website that helps students, graduates, and career changers in the US, from any major (biology, chemistry, public health, health science, psychology, social work, pre-med, physics, and more), compare 48 healthcare careers: medical laboratory science, cytotechnology, histotechnology, imaging, physical and occupational therapy, speech pathology, audiology, respiratory therapy, PA, nursing, pharmacy, dentistry, medicine, genetic counseling, public health, healthcare administration, dietetics, nurse practitioners, dental hygiene, radiation therapy and dosimetry, optometry, podiatry, quick-start roles such as phlebotomy, EMT, and LPN, and research/industry roles.
 
 Companion site for the **Smart Simplicity System** video series.
 
@@ -123,6 +123,16 @@ The pattern is always `#career-<id>`, using the `id` in `careers.js`.
 Tips for search: put the question people type into Google in the title ("How to become a…", "What can you do with a…"), keep the description under about 160 characters, and link to related career pages.
 
 After the first publish, add the site in [Google Search Console](https://search.google.com/search-console) and submit `https://healthcaretracks.com/sitemap.xml` so Google finds new articles quickly.
+
+## Add an official career video
+
+CareerOneStop (U.S. Department of Labor) publishes short career videos on YouTube. To show one on a career page:
+
+1. Copy the video's embed code, for example `<iframe ... src="https://www.youtube.com/embed/B7Jm90Zen20" ...>`.
+2. The video ID is the part after `/embed/`: `B7Jm90Zen20`.
+3. In `js/careers.js`, add `careerVideo: "B7Jm90Zen20",` to that career.
+
+The career page shows a thumbnail, and the video loads only when someone presses play (privacy-enhanced YouTube).
 
 ## Add a career
 
