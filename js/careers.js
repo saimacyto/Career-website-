@@ -9,6 +9,9 @@
   cat:   lab | rehab | clinical | research
   years: typical years of school after high school (used for sorting,
          the pathway chart, and the quiz). yearsLabel is what readers see.
+  careerVideo: optional YouTube video ID for an official career video (for example
+         from CareerOneStop). From an embed code like
+         src="https://www.youtube.com/embed/B7Jm90Zen20", the ID is B7Jm90Zen20.
   pay:   optional, e.g. "$61,890". Shown as median pay next to the salary links.
          Copy it from the BLS page (Pay tab) and update it each year.
   tags:  used by the "Which path fits me?" quiz.
@@ -308,6 +311,33 @@ window.CAREERS = [
     ],
     bls: BLS + "healthcare/occupational-therapy-assistants-and-aides.htm",
     tags: ["patients", "talk", "steady", "community"],
+    video: ""
+  },
+  {
+    id: "audiologist",
+    name: "Audiologist",
+    cat: "rehab",
+    credential: "AuD, CCC-A",
+    tagline: "Diagnoses and treats hearing loss and balance problems, from newborns to older adults.",
+    day: "You test hearing and balance with specialized equipment, fit and program hearing aids, support cochlear implant patients, and counsel families about hearing loss. Settings include clinics, hospitals, schools, and private practices.",
+    years: 8,
+    yearsLabel: "About 8 years (bachelor's plus a 4-year Doctor of Audiology)",
+    degree: "Doctorate (AuD)",
+    route: [
+      "Earn a bachelor's in any field; communication sciences and disorders is common, and science courses help",
+      "Complete a 4-year Doctor of Audiology (AuD) program accredited by the CAA (ASHA) or ACAEA, including a clinical externship",
+      "Pass the Praxis Examination in Audiology",
+      "Get a state license (required in every state); ASHA's CCC-A is optional but widely recognized"
+    ],
+    exam: "Praxis Examination in Audiology",
+    accreditor: { name: "CAA (ASHA)", url: "https://caa.asha.org" },
+    links: [
+      { label: "American Academy of Audiology", url: "https://www.audiology.org" },
+      { label: "CSDCAS (application)", url: "https://csdcas.liaisoncas.com" }
+    ],
+    bls: BLS + "healthcare/audiologists.htm",
+    tags: ["patients", "tech", "steady", "community"],
+    careerVideo: "B7Jm90Zen20",
     video: ""
   },
   {

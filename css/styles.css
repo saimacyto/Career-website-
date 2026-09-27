@@ -695,3 +695,11 @@ html:has(.tray:not([hidden])) { scroll-padding-bottom: 220px; }
 .fact-pay { grid-column: 1 / -1; }
 .fact-pay dd a { margin-right: 10px; white-space: nowrap; }
 .controls .search input { padding-left: 42px; }
+
+/* official career video (click to play) */
+.yt-facade, .yt-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: var(--r); overflow: hidden; background: #000; }
+.yt-facade { position: relative; padding: 0; cursor: pointer; }
+.yt-facade img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .9; transition: opacity .2s ease, transform .3s ease; }
+.yt-facade:hover img { opacity: 1; transform: scale(1.02); }
+.yt-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; transform: translate(-50%, -50%); filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
+.yt-play svg { width: 100%; height: 100%; }

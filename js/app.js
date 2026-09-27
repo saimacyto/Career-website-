@@ -16,7 +16,7 @@ const SITE = {
   const SHORT = {
     mls: "MLS", mlt: "MLT", cytotech: "Cytotech", histotech: "Histotech", radtech: "Rad tech",
     sonography: "Sonographer", nucmed: "Nuc med", pt: "Physical therapist", pta: "PT assistant",
-    ot: "Occupational therapist", ota: "OT assistant", slp: "Speech pathologist", rt: "Respiratory therapist",
+    ot: "Occupational therapist", ota: "OT assistant", slp: "Speech pathologist", audiologist: "Audiologist", rt: "Respiratory therapist",
     at: "Athletic trainer", pa: "PA", rn: "Nurse (RN)", pharmacist: "Pharmacist", dentist: "Dentist",
     physician: "Physician", gc: "Genetic counselor", mph: "Public health", dietitian: "Dietitian",
     researchtech: "Research tech", crc: "Research coordinator", regulatory: "Regulatory", bioinformatics: "Bioinformatics",
@@ -335,6 +335,14 @@ const SITE = {
     const prev = byId[order[(i - 1 + order.length) % order.length]];
     const next = byId[order[(i + 1) % order.length]];
 
+    const careerVideo = c.careerVideo ? `
+      <div class="d-sec"><h3>Official career video</h3>
+        <button type="button" class="yt-facade" data-yt="${esc(c.careerVideo)}" aria-label="Play the ${esc(c.name)} career video">
+          <img src="https://i.ytimg.com/vi/${esc(c.careerVideo)}/hqdefault.jpg" alt="" loading="lazy">
+          <span class="yt-play" aria-hidden="true"><svg viewBox="0 0 68 48"><path d="M66.5 7.7A8.5 8.5 0 0 0 60.5 1.7C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4A8.5 8.5 0 0 0 1.5 7.7C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+        </button>
+        <p class="fine">Video from CareerOneStop, sponsored by the U.S. Department of Labor. It plays from YouTube when you press play.</p>
+      </div>` : "";
     const video = c.video
       ? `<div class="video-box"><p><strong>Watch the episode</strong> on this career.</p><a class="btn btn-primary" href="${esc(c.video)}" target="_blank" rel="noopener">Play video</a></div>`
       : `<div class="video-box"><p><strong>Video episode coming soon.</strong> This career is on the series list.</p></div>`;
@@ -373,6 +381,7 @@ const SITE = {
       ${applyBlock(c)}
       <div class="d-sec" data-cat="${c.cat}"><h3>Links</h3>
         <div class="links">${links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("")}</div></div>
+      ${careerVideo}
       ${video}
       <div class="share"><span>Link to this career:</span><code id="share-url">${esc(shareUrl(c.id))}</code>
         <button type="button" id="copy-link">Copy</button></div>
@@ -416,6 +425,18 @@ const SITE = {
   });
 
   document.addEventListener("click", e => {
+    const yt = e.target.closest("[data-yt]");
+    if (yt) {
+      const f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(yt.dataset.yt) + "?autoplay=1&rel=0";
+      f.title = yt.getAttribute("aria-label").replace("Play the ", "");
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allowFullscreen = true;
+      f.className = "yt-frame";
+      yt.replaceWith(f);
+      return;
+    }
     const s = e.target.closest("[data-save]");
     if (s) { e.preventDefault(); toggleSave(s.dataset.save); return; }
     const t = e.target.closest("[data-open]");
@@ -494,13 +515,13 @@ const SITE = {
       ids: ["mls", "cytotech", "researchtech", "pa", "pharmacist", "gc", "physician", "dentist"] },
     { key: "health", label: "Health science, kinesiology, or exercise science",
       note: "A common launch pad for rehab careers. Compare your transcript with each program's prerequisites; chemistry and physics are the usual gaps.",
-      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "healthadmin", "crc"] },
+      ids: ["pt", "ot", "at", "pa", "rn", "sonography", "audiologist", "healthadmin", "crc"] },
     { key: "publichealth", label: "Public health or health administration",
       note: "A natural fit for population health, research, and program roles. Add science prerequisites and clinical programs open up too.",
       ids: ["mph", "healthadmin", "crc", "rn", "dietitian", "gc"] },
     { key: "people", label: "Psychology, social work, or sociology",
       note: "Listening and counseling skills matter most in therapy and counseling careers. Plan on adding biology, anatomy, and statistics prerequisites.",
-      ids: ["ot", "slp", "gc", "rn", "mph", "healthadmin", "crc"] },
+      ids: ["ot", "slp", "audiologist", "gc", "rn", "mph", "healthadmin", "crc"] },
     { key: "premed", label: "Pre-med (not going, or not yet)",
       note: "Your coursework transfers to many other clinical paths, several with shorter training and less debt than medical school.",
       ids: ["pa", "mls", "gc", "pharmacist", "dentist", "rn", "crc"] },
