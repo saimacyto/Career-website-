@@ -15,6 +15,7 @@ Companion site for the **Smart Simplicity System** video series.
 - **Quiz**: five questions, one at a time, that suggest three careers to research, with a fit score
 - **What you'll get**: six benefit cards and a three-step "how it works" strip near the top
 - **About Saima**: founder photo, bio, credentials, and the story behind Healthcare Tracks
+- **Salary ranges**: every career links to the BLS Pay tab (national salary range) and a state-by-state salary lookup, in a searchable Salary section, on each career page, and in the compare table. Add an optional `pay` figure to a career in `js/careers.js` to show its median next to the links.
 - **Choosing a program**: four tabs: a program finder (where programs are, how to apply, licensing, a tip, and the accreditor's directory for each career), a 15-point checklist for evaluating programs (saved in the browser and printable), features of programs that are easier to get into, and state and cost help (in-state tuition, regional tuition exchanges, licensing boards, loan repayment). Each career page also has a "How to apply" box. Edit `js/programs.js` to change this content.
 - **Blog**: SEO-friendly articles at `/blog/`, each on its own page with search-engine metadata, related career links, and an author box. The newest three also appear on the homepage.
 - **How to choose**: four questions to ask before applying to any program
@@ -29,6 +30,7 @@ favicon.svg       browser tab icon
 blog-src/         blog articles, written in Markdown (edit these)
 blog/             generated article pages (don't edit by hand)
 scripts/          build-blog.py turns blog-src into blog pages
+docs/             YouTube walkthrough plan (not published)
 sitemap.xml       list of pages for Google (generated)
 robots.txt        tells search engines where the sitemap is
 404.html          page shown for broken links

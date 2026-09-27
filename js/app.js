@@ -365,6 +365,7 @@ const SITE = {
         <div class="fact"><dt>Degree</dt><dd>${esc(c.degree)}</dd></div>
         <div class="fact"><dt>Time after high school</dt><dd>${esc(c.yearsLabel)}</dd></div>
         <div class="fact"><dt>Exam</dt><dd>${esc(c.exam)}</dd></div>
+        <div class="fact fact-pay"><dt>Pay</dt><dd>${c.pay ? esc(c.pay) + " median · " : ""}<a href="${esc(payUrl(c))}" target="_blank" rel="noopener">See salary range ↗</a> <a href="${esc(stateUrl(c))}" target="_blank" rel="noopener">By state ↗</a></dd></div>
       </dl>
       <div class="d-sec"><h3>What the work looks like</h3><p>${esc(c.day)}</p></div>
       <div class="d-sec" data-cat="${c.cat}"><h3>Your route in</h3>
@@ -442,7 +443,7 @@ const SITE = {
       ["Pace", c => esc(traitFor(c, ["fast", "steady"]))],
       ["Setting", c => esc(traitFor(c, ["hospital", "community", "industry"]))],
       ["Accreditor", c => c.accreditor ? `<a href="${esc(c.accreditor.url)}" target="_blank" rel="noopener">${esc(c.accreditor.name)} ↗</a>` : "Varies by program"],
-      ["Pay & outlook", c => `<a href="${esc(c.bls)}" target="_blank" rel="noopener">BLS ↗</a>`]
+      ["Pay", c => `${c.pay ? esc(c.pay) + " median<br>" : ""}<a href="${esc(payUrl(c))}" target="_blank" rel="noopener">Salary range ↗</a> · <a href="${esc(stateUrl(c))}" target="_blank" rel="noopener">By state ↗</a>`]
     ];
     $("#compare-body").innerHTML = `
       <div class="d-top"><div><p class="eyebrow">Side by side</p><h2 id="cmp-title">Compare careers</h2></div>
@@ -457,6 +458,34 @@ const SITE = {
     if (!cd.open) cd.showModal();
   }
   $("#compare-btn").addEventListener("click", openCompare);
+
+  /* ---------------- salary ---------------- */
+  const BLS_CLOSEST = { crc: true, regulatory: true, bioinformatics: true, mph: true };
+  const blsLabel = c => {
+    const slug = c.bls.split("/").pop().replace(".htm", "").replace(/-/g, " ");
+    const name = slug.charAt(0).toUpperCase() + slug.slice(1);
+    return BLS_CLOSEST[c.id] ? `${name} (closest BLS match)` : name;
+  };
+  const payUrl = c => c.bls + "#tab-5";
+  const stateUrl = c => "https://www.careeronestop.org/Toolkit/Wages/find-salary.aspx?keyword=" + encodeURIComponent(c.name.split(" / ")[0]) + "&location=United%20States";
+  function renderSalary() {
+    const q = ($("#salary-search").value || "").trim().toLowerCase();
+    const list = careers
+      .filter(c => !q || [c.name, SHORT[c.id], CATS[c.cat].label, c.credential].join(" ").toLowerCase().includes(q))
+      .sort((a, b) => CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat) || a.name.localeCompare(b.name));
+    $("#salary-list").innerHTML = list.length ? list.map(c => `
+      <div class="sal-row" data-cat="${c.cat}">
+        <div class="sal-name"><button type="button" data-open="${c.id}">${esc(c.name)}</button>
+          <span class="fine">${esc(blsLabel(c))}</span></div>
+        <div class="sal-pay">${c.pay ? `<strong>${esc(c.pay)}</strong><span class="fine">median pay</span>` : `<span class="fine">${esc(c.degree)} · ${yrsShort(c)}</span>`}</div>
+        <div class="sal-links">
+          <a class="btn btn-primary btn-sm" href="${esc(payUrl(c))}" target="_blank" rel="noopener">Salary range ↗</a>
+          <a class="btn btn-ghost btn-sm" href="${esc(stateUrl(c))}" target="_blank" rel="noopener">By state ↗</a>
+        </div>
+      </div>`).join("") : `<div class="empty">No careers match “${esc(q)}”.</div>`;
+  }
+  $("#salary-search").addEventListener("input", renderSalary);
+  renderSalary();
 
   /* ---------------- start from your degree ---------------- */
   const DEGREES = [
