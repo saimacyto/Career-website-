@@ -9,6 +9,8 @@
   cat:   lab | rehab | clinical | research
   years: typical years of school after high school (used for sorting,
          the pathway chart, and the quiz). yearsLabel is what readers see.
+  pay:   optional, e.g. "$61,890". Shown as median pay next to the salary links.
+         Copy it from the BLS page (Pay tab) and update it each year.
   tags:  used by the "Which path fits me?" quiz.
          patients | some-patients | behind       (patient contact)
          movement | lab | tech | data | talk     (what they enjoy)

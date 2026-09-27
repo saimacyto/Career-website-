@@ -675,3 +675,23 @@ html:has(.tray:not([hidden])) { scroll-padding-bottom: 220px; }
   .mm-head span { font-size: .85rem; color: var(--muted); }
   .mm-pills { display: flex; flex-wrap: wrap; gap: 8px; }
 }
+
+/* salary */
+.salary-how { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.salary-how div { display: grid; gap: 4px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); border-top: 3px solid var(--hema); }
+.salary-how strong { font-family: var(--f-display); }
+.salary-how span { font-size: .9rem; color: var(--muted); }
+.salary-list { display: grid; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.sal-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--line); border-left: 4px solid var(--cat); }
+.sal-row:last-child { border-bottom: 0; }
+.sal-row:hover { background: color-mix(in srgb, var(--cat) 5%, var(--surface)); }
+.sal-name { display: grid; gap: 2px; min-width: 0; }
+.sal-name button { justify-self: start; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; font: 700 1.02rem var(--f-display); color: var(--ink); }
+.sal-name button:hover { color: var(--cat); }
+.sal-pay { display: grid; }
+.sal-pay strong { font-family: var(--f-display); font-size: 1.1rem; color: var(--cat); }
+.sal-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+@media (max-width: 700px) { .sal-row { grid-template-columns: 1fr; } .sal-links { justify-content: flex-start; } }
+.fact-pay { grid-column: 1 / -1; }
+.fact-pay dd a { margin-right: 10px; white-space: nowrap; }
+.controls .search input { padding-left: 42px; }
