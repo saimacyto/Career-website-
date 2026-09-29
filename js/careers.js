@@ -133,6 +133,32 @@ window.CAREERS = [
     video: ""
   },
   {
+    id: "labmanager",
+    name: "Laboratory Manager / Supervisor",
+    cat: "lab",
+    credential: "MLS(ASCP), DLM(ASCP)",
+    tagline: "Leads the clinical lab: people, quality, budgets, and compliance.",
+    day: "You schedule and develop staff, oversee quality control and proficiency testing, prepare for inspections and accreditation, manage budgets and instrument contracts, and solve problems between the lab, nursing, and physicians. Most lab leaders started at the bench.",
+    years: 6,
+    yearsLabel: "4 years (bachelor's in MLS or a science) plus several years of lab experience; many add a master's",
+    degree: "Bachelor's + experience (master's optional)",
+    route: [
+      "Become a certified medical laboratory scientist (or technologist in a lab specialty)",
+      "Build experience at the bench, then as a lead or supervisor",
+      "Take on quality, safety, training, and inspection-readiness projects",
+      "Optional: the ASCP Diplomate in Laboratory Management (DLM) credential, or a master's in health administration, business, or laboratory science"
+    ],
+    exam: "Optional: ASCP Diplomate in Laboratory Management (DLM)",
+    accreditor: { name: "NAACLS (MLS education)", url: "https://www.naacls.org" },
+    links: [
+      { label: "ASCP Board of Certification (DLM)", url: "https://www.ascp.org/content/board-of-certification" },
+      { label: "ASCLS (professional society)", url: "https://ascls.org" }
+    ],
+    bls: BLS + "management/medical-and-health-services-managers.htm",
+    tags: ["behind", "data", "fast", "hospital"],
+    video: ""
+  },
+  {
     id: "radtech",
     name: "Radiologic Technologist",
     cat: "lab",
