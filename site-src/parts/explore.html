@@ -1,0 +1,24 @@
+  <section class="section wrap reveal" id="explore">
+    <div class="controls">
+      <label class="search">
+        <span class="sr-only">Search careers</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="search" type="search" placeholder="Search: lab, therapy, PA, microscope…" autocomplete="off">
+      </label>
+      <div class="chips" id="filters" role="group" aria-label="Filter by area"></div>
+      <label class="sort">
+        <span>Sort</span>
+        <select id="sort">
+          <option value="cat">By area</option>
+          <option value="years">Shortest first</option>
+          <option value="name">A to Z</option>
+        </select>
+      </label>
+    </div>
+    <div class="year-filter">
+      <label for="max-years">Years of school I'm ready for: <strong id="max-years-out">Any</strong></label>
+      <input type="range" id="max-years" min="2" max="12" step="1" value="12">
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid" id="grid"></div>
+  </section>

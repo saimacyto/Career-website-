@@ -71,4 +71,4 @@ Also be cautious of programs that:
 
 ## Find programs for your career
 
-Use the [Find programs tab](/#programs) on Healthcare Tracks to see where programs are offered, how to apply, and the official accredited-program directory for each career.
+Use the [Find programs tab](/programs) on Healthcare Tracks to see where programs are offered, how to apply, and the official accredited-program directory for each career.

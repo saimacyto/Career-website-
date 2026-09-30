@@ -28,7 +28,7 @@ After years of hiring and training new healthcare professionals, I can usually t
 ## Cost: the full picture
 
 9. **Total cost, not just tuition.** Add fees, books, uniforms, equipment, exam fees, background checks, and living costs for the full length of the program.
-10. **In-state tuition and regional exchanges.** Public schools charge residents much less. Regional exchange programs can lower out-of-state tuition too. [See the State & cost tab](/#programs).
+10. **In-state tuition and regional exchanges.** Public schools charge residents much less. Regional exchange programs can lower out-of-state tuition too. [See the State & cost tab](/programs).
 11. **Financial help.** Ask about scholarships, graduate assistantships, hospital tuition help in exchange for a work commitment, and loan repayment programs.
 
 ## Fit: can you realistically complete it?
@@ -48,4 +48,4 @@ After years of hiring and training new healthcare professionals, I can usually t
 - **Current students and recent graduates.** Ask the program to connect you, or look for them on LinkedIn.
 - **The accreditor's directory.** It confirms status and sometimes lists outcome data.
 
-Healthcare Tracks has an interactive version of this checklist that saves your progress and prints. Open the [What to check tab](/#programs), and use the Find programs tab to see how to apply for each career.
+Healthcare Tracks has an interactive version of this checklist that saves your progress and prints. Open the [What to check tab](/programs), and use the Find programs tab to see how to apply for each career.

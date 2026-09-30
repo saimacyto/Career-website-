@@ -199,7 +199,7 @@ HEAD = """<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{description}">
 <meta name="author" content="Saima Ahmad">
-<meta name="theme-color" content="#3a3d8f">
+<meta name="theme-color" content="#0b0b0f">
 <link rel="canonical" href="{url}">
 <meta property="og:site_name" content="Healthcare Tracks">
 <meta property="og:title" content="{og_title}">
@@ -211,9 +211,10 @@ HEAD = """<!doctype html>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="/css/styles.css">
 <link rel="stylesheet" href="/css/blog.css">
+<link rel="stylesheet" href="/css/modern.css">
 <script>
   document.documentElement.classList.add("js");
   try {{ var t = localStorage.getItem("bcc-theme"); if (t) document.documentElement.setAttribute("data-theme", t); }} catch (e) {{}}
@@ -230,9 +231,10 @@ HEAD = """<!doctype html>
       <span class="brand-text">Healthcare Tracks<small>by Smart Simplicity System</small></span>
     </a>
     <nav class="topnav" id="topnav" aria-label="Main">
-      <a href="/#explore">Careers</a>
-      <a href="/#degree">Your degree</a>
-      <a href="/#quiz">Quiz</a>
+      <a href="/careers">Careers</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/programs">Programs</a>
+      <a href="/salary">Salary</a>
       <a href="/blog/"{blog_active}>Blog</a>
       <a href="/#about">About</a>
     </nav>
@@ -250,9 +252,9 @@ HEAD = """<!doctype html>
 """
 
 FOOT = """
-<footer class="footer">
+<footer class="site-footer">
   <div class="wrap">
-    <p><strong>Healthcare Tracks</strong> · Created by Saima Ahmad · <a href="/">Home</a> · <a href="/blog/">Blog</a> · <a href="/#explore">All careers</a></p>
+    <p><strong>Healthcare Tracks</strong> · Created by Saima Ahmad · <a href="/">Home</a> · <a href="/careers">All careers</a> · <a href="/quiz">Quiz</a> · <a href="/programs">Programs</a> · <a href="/salary">Salary</a> · <a href="/blog/">Blog</a></p>
     <p class="fine">Requirements change. Always confirm current details with the accrediting body, certification board, and the programs you apply to. This site is educational and is not affiliated with any organization linked here.</p>
   </div>
 </footer>
@@ -350,7 +352,7 @@ def build_post(p, posts, careers):
         <h2>Not sure which track fits you?</h2>
         <p>Answer five quick questions and get three careers worth researching.</p>
       </div>
-      <a class="btn btn-primary" href="/#quiz">Take the quiz</a>
+      <a class="btn btn-primary" href="/quiz">Take the quiz</a>
     </div>
     {AUTHOR_BOX.format(bio=esc(AUTHOR_BIO))}
   </article>
@@ -405,7 +407,7 @@ def build_index(posts):
 
 
 def update_homepage(posts):
-    path = os.path.join(ROOT, "index.html")
+    path = os.path.join(ROOT, "site-src", "parts", "blog.html")
     s = open(path, encoding="utf-8").read()
     start, end = "<!--BLOG-LATEST-START-->", "<!--BLOG-LATEST-END-->"
     if start not in s:
@@ -419,7 +421,9 @@ def update_homepage(posts):
 
 def build_sitemap(posts):
     today = date.today().isoformat()
-    urls = [(f"{SITE}/", today, "1.0"), (f"{SITE}/blog/", posts[0]["date"] if posts else today, "0.8")]
+    urls = [(f"{SITE}/", today, "1.0")]
+    urls += [(f"{SITE}/{p}", today, "0.9") for p in ("careers", "quiz", "programs", "salary")]
+    urls += [(f"{SITE}/blog/", posts[0]["date"] if posts else today, "0.8")]
     urls += [(f"{SITE}/blog/{p['slug']}", p["date"], "0.7") for p in posts]
     body = "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n" for u, d, pr in urls)
     open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8").write(
@@ -444,6 +448,7 @@ def main():
     build_index(posts)
     update_homepage(posts)
     build_sitemap(posts)
+    subprocess.run(["python3", os.path.join(ROOT, "scripts", "build-pages.py")], check=True)
     print(f"built {len(posts)} articles, blog index, homepage cards, and sitemap.xml")
 
 
