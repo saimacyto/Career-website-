@@ -52,4 +52,4 @@ Start with three questions:
 
 Then check that any program you consider is accredited. Only graduates of accredited programs can sit for most certification exams, and each career page on Healthcare Tracks links to the right accreditor.
 
-If you're still unsure, the [five-question quiz](/#quiz) suggests three careers to research based on what you enjoy. You can also [start from your degree](/#degree) to see paths people with a science background commonly take.
+If you're still unsure, the [five-question quiz](/quiz) suggests three careers to research based on what you enjoy. You can also [start from your degree](/careers#degree) to see paths people with a science background commonly take.

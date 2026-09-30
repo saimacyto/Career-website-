@@ -241,6 +241,7 @@ window.APPLY = {
     const t = e.target.closest("[data-tab]");
     if (t) showTab(t.dataset.tab);
   });
+  if (location.hash === "#what-to-check") showTab("panel-check");
 
   /* ---------- program finder ---------- */
   const sel = $("#finder-career");

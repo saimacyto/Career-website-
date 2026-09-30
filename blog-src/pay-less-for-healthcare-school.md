@@ -53,4 +53,4 @@ Several programs repay loans or offer scholarships in exchange for working where
 
 A cheaper program isn't a bargain if graduates struggle to pass the exam or find work. Compare the total cost with each program's exam pass rate, graduation rate, and job placement rate. The [College Scorecard](https://collegescorecard.ed.gov) shows costs and earnings data for many schools.
 
-For a full list of what to compare, use the checklist in the [Choosing a program section](/#programs) of Healthcare Tracks.
+For a full list of what to compare, use the checklist in the [Choosing a program section](/programs) of Healthcare Tracks.

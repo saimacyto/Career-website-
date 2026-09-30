@@ -40,4 +40,4 @@ These jobs also give you healthcare experience, which strengthens applications t
 
 ## Want a longer view?
 
-If you're open to two or three more years of school, the options expand to physician assistant, occupational and physical therapy, genetic counseling, and more. Use the **years of school** slider in the [career explorer](/#explore) to filter careers by how much time you want to invest, or read the [faster routes section](/#degree) on the homepage.
+If you're open to two or three more years of school, the options expand to physician assistant, occupational and physical therapy, genetic counseling, and more. Use the **years of school** slider in the [career explorer](/careers) to filter careers by how much time you want to invest, or read the [faster routes section](/careers#degree) on the homepage.

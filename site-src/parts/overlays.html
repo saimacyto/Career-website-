@@ -1,0 +1,42 @@
+<aside class="tray" id="tray" aria-label="Your shortlist" hidden>
+  <div class="tray-head">
+    <button type="button" class="tray-toggle" id="tray-toggle" aria-expanded="true">
+      <span class="heart" aria-hidden="true">♥</span> Shortlist <span class="badge" id="tray-count">0</span>
+    </button>
+    <span class="fine" id="tray-hint">Tick 2–3 to compare</span>
+  </div>
+  <div class="tray-body" id="tray-body">
+    <ul class="tray-list" id="tray-list"></ul>
+    <div class="tray-actions">
+      <button type="button" class="btn btn-primary btn-sm" id="compare-btn" disabled>Compare</button>
+      <button type="button" class="btn btn-ghost btn-sm" id="clear-btn">Clear</button>
+    </div>
+  </div>
+</aside>
+
+<button type="button" class="to-top" id="to-top" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>
+</button>
+
+<dialog class="search-dlg" id="search-dlg" aria-label="Search careers">
+  <div class="q-box">
+    <div class="q-top">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      <input id="q-input" type="text" enterkeyhint="search" placeholder="Search: lab, nurse, imaging, PA…" autocomplete="off" aria-label="Search careers">
+      <button type="button" class="close" data-close aria-label="Close search">×</button>
+    </div>
+    <div class="chips q-topics" id="q-topics" aria-label="Topics"></div>
+    <p class="q-count fine" id="q-count" aria-live="polite"></p>
+    <ul class="q-results" id="q-results"></ul>
+    <p class="q-foot fine">Press Enter to open the first result · <a href="/blog/">Search the blog</a></p>
+  </div>
+</dialog>
+
+<dialog class="detail" id="detail" aria-labelledby="d-name">
+  <div class="detail-inner" id="detail-body"></div>
+</dialog>
+
+<dialog class="detail compare" id="compare" aria-labelledby="cmp-title">
+  <div class="detail-inner" id="compare-body"></div>
+</dialog>
+

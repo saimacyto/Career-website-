@@ -1,0 +1,114 @@
+<!--
+title: Healthcare Tracks | Find your place in healthcare
+og_title: Healthcare Tracks
+description: A free, simple guide to US healthcare careers for every major. Explore 49 careers, see pay and training time, take a 2-minute quiz, and find accredited programs.
+path: /
+page: home
+-->
+  <section class="hero2 wrap" id="top">
+    <div class="hero2-copy">
+      <p class="pill-eyebrow"><span class="dot-live" aria-hidden="true"></span> Free · <span data-total-text>49</span> careers · For every major</p>
+      <h1>Find your place in <span class="hl">healthcare.</span></h1>
+      <p class="hero2-lede">Whatever you studied, see where it can take you: what the work is like, how long training takes, what it pays, and how to get in.</p>
+      <form class="hero-search" id="hero-search" role="search" action="/careers">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+        <input id="hero-q" name="q" type="text" placeholder="Search a career: lab, nurse, PA…" autocomplete="off" aria-label="Search careers">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+      <div class="hero-chips" aria-label="Popular topics">
+        <span class="fine">Popular:</span>
+        <button type="button" class="chip" data-hero-topic="lab">Lab</button>
+        <button type="button" class="chip" data-hero-topic="nursing">Nursing</button>
+        <button type="button" class="chip" data-hero-topic="imaging">Imaging</button>
+        <button type="button" class="chip" data-hero-topic="therapy">Therapy</button>
+        <button type="button" class="chip" data-hero-topic="quick start">Quick start</button>
+      </div>
+    </div>
+    <div class="hero2-media">
+      <picture>
+        <source srcset="img/saima-ahmad.webp" type="image/webp">
+        <img src="img/saima-ahmad.jpg" alt="Saima Ahmad, founder of Healthcare Tracks" width="720" height="900" fetchpriority="high">
+      </picture>
+      <a class="float-card fc-top" href="#about">
+        <img src="img/saima-avatar.webp" alt="" width="40" height="40">
+        <span><strong>Saima Ahmad, MPH</strong><br>25+ years in healthcare</span>
+      </a>
+      <div class="float-card fc-bottom" aria-hidden="true">
+        <span class="fc-num">1.9M</span>
+        <span>healthcare openings<br>every year (BLS)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap reveal" id="areas">
+    <div class="section-head row-head">
+      <div>
+        <h2>Explore by area</h2>
+        <p class="section-sub">Pick what sounds interesting. Every card opens a short, focused list.</p>
+      </div>
+      <a class="link-arrow" href="/careers">See all careers →</a>
+    </div>
+    <div class="area-grid" id="area-grid"></div>
+  </section>
+
+  <section class="section wrap reveal" id="ways">
+    <div class="section-head">
+      <h2>Three easy ways to start</h2>
+    </div>
+    <div class="ways">
+      <a class="way" href="/quiz">
+        <span class="way-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
+        <strong>Take the 2-minute quiz</strong>
+        <span>Five questions. Three careers worth researching, with the reasons they fit you.</span>
+        <em>Start the quiz →</em>
+      </a>
+      <a class="way" href="/careers#degree">
+        <span class="way-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+        <strong>Start from your degree</strong>
+        <span>Biology, public health, social work, physics, or anything else. See where it fits.</span>
+        <em>Pick your major →</em>
+      </a>
+      <a class="way" href="/salary">
+        <span class="way-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 6.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5S9.2 10 12 10s5 1.6 5 3.5S14.8 17 12 17s-5-1.6-5-3.5"/></svg></span>
+        <strong>Check the pay</strong>
+        <span>Official median pay for every career, plus a state-by-state lookup.</span>
+        <em>See salaries →</em>
+      </a>
+    </div>
+  </section>
+
+  <section class="section wrap reveal" id="popular">
+    <div class="section-head row-head">
+      <div>
+        <h2>Popular careers</h2>
+        <p class="section-sub">Tap any career for the full route, exam, programs, and pay.</p>
+      </div>
+      <a class="link-arrow" href="/careers">All <span data-total-text>49</span> careers →</a>
+    </div>
+    <div class="pop-row" id="pop-row"></div>
+  </section>
+
+  <section class="stats-band reveal" aria-labelledby="stats-title">
+    <div class="wrap">
+      <h2 id="stats-title">Healthcare is hiring.</h2>
+      <div class="band-grid">
+        <div><strong>1.9M</strong><span>openings projected every year in healthcare occupations, 2025–2035</span></div>
+        <div><strong>$86,530</strong><span>median pay for healthcare practitioners and technical jobs, May 2025</span></div>
+        <div><strong>$50,980</strong><span>median pay for all occupations, May 2025</span></div>
+      </div>
+      <p class="fine band-src">Source: U.S. Bureau of Labor Statistics, Occupational Outlook Handbook.</p>
+    </div>
+  </section>
+
+{{> about}}
+{{> blog}}
+
+  <section class="section wrap reveal">
+    <div class="cta-band">
+      <div>
+        <h2>Not sure where to start?</h2>
+        <p>Answer five quick questions and get three careers worth a closer look.</p>
+      </div>
+      <a class="btn btn-light" href="/quiz">Take the quiz</a>
+    </div>
+  </section>

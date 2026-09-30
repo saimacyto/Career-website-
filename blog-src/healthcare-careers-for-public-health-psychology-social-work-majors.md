@@ -58,4 +58,4 @@ Community colleges and online post-bacc programs offer these at a lower cost. Ch
 
 ## Your next step
 
-Pick your major in the [Start from your degree](/#degree) section to see these careers side by side, then save your favorites and compare them. The differences in years of school, patient contact, and setting become clear quickly.
+Pick your major in the [Start from your degree](/careers#degree) section to see these careers side by side, then save your favorites and compare them. The differences in years of school, patient contact, and setting become clear quickly.

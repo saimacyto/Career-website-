@@ -28,7 +28,10 @@ const SITE = {
     rectherapist: "Recreational therapist", hit: "Health info tech", ohs: "Health & safety", labmanager: "Lab manager"
   };
 
-  const $ = sel => document.querySelector(sel);
+  /* The same script runs on every page (home, careers, quiz, programs, salary).
+     When a section isn't on the current page, $ returns a detached placeholder,
+     so that section's setup quietly does nothing instead of throwing. */
+  const $ = sel => document.querySelector(sel) || document.createElement("div");
   const $$ = sel => Array.from(document.querySelectorAll(sel));
   const esc = s => String(s).replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
   const yrsShort = c => (c.years >= 11 ? "11+ yrs" : c.years === 1 ? "1 yr" : c.years + " yrs");
@@ -314,7 +317,7 @@ const SITE = {
   });
   $("#search").addEventListener("input", e => {
     state.q = e.target.value.trim().toLowerCase();
-    searchHits = new Set(searchCareers(state.q).map(c => c.id));
+    searchHits = new Map(searchCareers(state.q).map((c, i) => [c.id, i]));
     renderGrid();
   });
   $("#sort").addEventListener("change", e => { state.sort = e.target.value; renderGrid(); });
@@ -340,7 +343,7 @@ const SITE = {
     if (!state.q) return true;
     return searchHits.has(c.id);
   }
-  let searchHits = new Set();
+  let searchHits = new Map();
 
   function card(c, i) {
     return `<article class="card" data-cat="${c.cat}" style="--i:${i}">
@@ -361,7 +364,8 @@ const SITE = {
     let list = careers.filter(matches);
     if (state.sort === "years") list.sort((a, b) => a.years - b.years || a.name.localeCompare(b.name));
     else if (state.sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
-    else list.sort((a, b) => CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat) || a.years - b.years);
+    else list.sort((a, b) => CAT_ORDER.indexOf(a.cat) - CAT_ORDER.indexOf(b.cat) ||
+      (state.q ? searchHits.get(a.id) - searchHits.get(b.id) : a.years - b.years));
     visibleOrder = list.map(c => c.id);
 
     $("#count").textContent = `Showing ${list.length} of ${careers.length} careers`;
@@ -409,7 +413,7 @@ const SITE = {
         <div><dt>Apply through</dt><dd class="via">${via}</dd></div>
         <div><dt>Licensing</dt><dd>${esc(a.license)}</dd></div>
         <div><dt>Tip</dt><dd>${esc(a.tip)}</dd></div></dl>
-      <a href="#programs" data-close data-tab="panel-check" class="fine">Compare programs with the checklist →</a></div>`;
+      <a href="/programs#what-to-check" data-close data-tab="panel-check" class="fine">Compare programs with the checklist →</a></div>`;
   }
 
   function openCareer(id, push = true) {
@@ -533,7 +537,6 @@ const SITE = {
     if (m && byId[m[1]]) openCareer(m[1], false);
   }
   window.addEventListener("hashchange", fromHash);
-  fromHash();
 
   /* ---------------- compare ---------------- */
   function openCompare() {
@@ -813,6 +816,69 @@ const SITE = {
     if (e.key === "/" && !typing && !document.querySelector("dialog[open]")) { e.preventDefault(); openSearch(""); }
   });
 
+  /* ---------------- home: area tiles, popular careers, hero search ---------------- */
+  const AREA_ICONS = {
+    "Lab": '<path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7 15h10"/>',
+    "Imaging": '<rect x="3" y="4" width="18" height="14" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M8 21h8"/>',
+    "Nursing": '<path d="M12 21s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 8.1a4.3 4.3 0 0 1 7.5 2.7C19.5 16.4 12 21 12 21z"/><path d="M12 11v4M10 13h4"/>',
+    "Therapy": '<circle cx="12" cy="4.5" r="2"/><path d="M12 7v6l-3 7M12 13l3 7M7 10l5-1 5 1"/>',
+    "Dental": '<path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4.5 2 7 .5 3 1 6.5 2.5 6.5S9 17 12 17s3 4 4.5 4 2-3.5 2.5-6.5c.5-2.5 2-4 2-7C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/>',
+    "Pharmacy": '<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="M9.5 8.5l5 7"/>',
+    "Admin": '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
+    "Quick start": '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    "Research": '<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M8.5 11h5M11 8.5v5"/>'
+  };
+  const AREA_BLURB = {
+    "Lab": "Run the tests behind most diagnoses.",
+    "Imaging": "X-ray, ultrasound, MRI, and radiation therapy.",
+    "Nursing": "From LPN to nurse practitioner.",
+    "Therapy": "Help people move, speak, breathe, and heal.",
+    "Dental": "Prevent and treat problems of the mouth.",
+    "Pharmacy": "Prepare medicines and keep patients safe.",
+    "Admin": "Lead teams, data, and operations.",
+    "Quick start": "Start working in weeks to a year.",
+    "Research": "Trials, data, and new treatments."
+  };
+  $("#area-grid").innerHTML = TOPICS.map((t, i) => `
+    <a class="area-tile" href="/careers?topic=${encodeURIComponent(t.words[0])}" style="--i:${i}" data-area="${esc(t.label)}">
+      <span class="area-icon" aria-hidden="true"><svg viewBox="0 0 24 24">${AREA_ICONS[t.label] || ""}</svg></span>
+      <strong>${esc(t.label)}</strong>
+      <span>${esc(AREA_BLURB[t.label] || "")}</span>
+      <em>${t.ids.length} careers →</em>
+    </a>`).join("");
+
+  const POPULAR = ["mls", "rn", "pa", "sonography", "hygienist", "pt", "dosimetrist", "ot"];
+  $("#pop-row").innerHTML = POPULAR.filter(id => byId[id]).map(id => {
+    const c = byId[id];
+    return `<button type="button" class="pop-card" data-open="${c.id}" data-cat="${c.cat}">
+      <span class="pop-area">${esc(CATS[c.cat].label)}</span>
+      <strong>${esc(c.name)}</strong>
+      <span class="pop-tag">${esc(c.tagline)}</span>
+      <span class="pop-meta"><span>${esc(yrsShort(c))}</span>${c.pay ? `<span>${esc(c.pay)} median</span>` : ""}</span>
+    </button>`;
+  }).join("");
+
+  $("#hero-search").addEventListener("submit", e => { e.preventDefault(); openSearch($("#hero-q").value); });
+  $("#hero-q").addEventListener("input", e => { if (e.target.value.trim().length >= 2) { openSearch(e.target.value); e.target.value = ""; } });
+  $$("[data-hero-topic]").forEach(b => b.addEventListener("click", () => openSearch(b.dataset.heroTopic)));
+
+  /* careers page: /careers?topic=lab or ?q=nurse prefills the search */
+  const params = new URLSearchParams(location.search);
+  const preset = params.get("topic") || params.get("q");
+  if (preset && document.querySelector("#search")) {
+    const input = $("#search");
+    input.value = preset;
+    input.dispatchEvent(new Event("input"));
+  }
+
+  /* old one-page links (e.g. /#programs in videos and blog posts) go to the new pages */
+  const MOVED = { explore: "/careers", map: "/careers#map", degree: "/careers#degree", quiz: "/quiz", programs: "/programs", choose: "/programs#choose", resources: "/programs#resources", salary: "/salary" };
+  const oldHash = location.hash.slice(1);
+  if (document.body.classList.contains("page-home") && MOVED[oldHash]) location.replace(MOVED[oldHash]);
+
   /* ---------------- channel link ---------------- */
-  if (SITE.channelUrl) { const a = $("#channel-link"); a.href = SITE.channelUrl; a.hidden = false; }
+  /* open a shared career link (#career-mls) only after everything above is set up */
+  fromHash();
+
+  if (SITE.channelUrl) { ["#channel-link", "#channel-link-foot"].forEach(sel => { const a = $(sel); a.href = SITE.channelUrl; a.hidden = false; }); }
 })();

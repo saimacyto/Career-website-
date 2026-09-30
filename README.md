@@ -45,6 +45,20 @@ wrangler.jsonc    Cloudflare deploy settings
 .nojekyll         tells GitHub Pages to serve files as-is
 ```
 
+## How the pages are built
+
+The site has five pages: `/` (home), `/careers`, `/quiz`, `/programs`, and `/salary`, plus the blog.
+They share one header and footer, kept in `site-src/`:
+
+```
+site-src/layout.html     shared <head>, header, footer, scripts
+site-src/pages/*.html    one file per page (title and description at the top)
+site-src/parts/*.html    sections reused by the pages
+```
+
+After editing anything in `site-src/`, run `python3 scripts/build-pages.py` (or `python3 scripts/build-blog.py`, which also rebuilds the pages). Don't edit the generated `index.html`, `careers.html`, etc. directly.
+Old one-page links such as `/#programs` automatically forward to the new pages, and career links such as `/#career-mls` still open the career on any page.
+
 ## Publish on GitHub Pages
 
 The site files sit at the root of this repository, which is what GitHub Pages needs. (Pages can't serve a website from a `.zip` file.)
